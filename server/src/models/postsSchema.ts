@@ -18,7 +18,7 @@ const PostSchema = new Schema<IPosts>({
     description: {type: String, required: false},
     destCoordinates: {type: Object, required: true},
     creator: {type: String, required : false},
-    createdAt: {type: String, required : false}
+    createdAt: {type: String, required : false},
 });
 
 const PostModel = model<IPosts>('Posts', PostSchema)

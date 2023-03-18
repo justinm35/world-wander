@@ -22,6 +22,7 @@ export const createPost = async (req: any, res: any) => {
     }
 }
 
+
 export const deletePost = async(req: any, res: any) => {
     try {
         await PostModel.findByIdAndDelete(req.params.id)
