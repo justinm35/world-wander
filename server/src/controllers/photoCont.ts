@@ -1,8 +1,8 @@
 import fs from 'fs'
 export const addPhotos = async (req: any, res: any) => {
-    // req.files is array of `photos` files
+     // req.files is array of `photos` files
     // req.body will contain the text fields, if there were any
-    res.send(req.files[0].filename);
+  res.send(req.files[0].filename);
   }
 
 export const removePhoto = async(req: any, res: any) =>{

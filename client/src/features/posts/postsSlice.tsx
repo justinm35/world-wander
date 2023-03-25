@@ -20,8 +20,13 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         method: "DELETE"
       }),
       invalidatesTags: ["Posts"]
+    }),
+    deletePhoto : builder.mutation({
+      query: (id) => ({
+        url: `/photos/removePhoto/${id}`,
+        method:"DELETE"
+      })
     })
   }),
 });
-
-export const { useAddNewPostMutation, useFetchAllPostsQuery, useDeletePostMutation } = postsApiSlice;
+export const { useAddNewPostMutation, useFetchAllPostsQuery, useDeletePostMutation, useDeletePhotoMutation } = postsApiSlice;

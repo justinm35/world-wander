@@ -5,10 +5,12 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import postRoutes from './routes/postRoutes'
 import photoRoutes from './routes/photoRoutes'
+import authRoutes from './routes/authRoutes'
 //mongoose imports
 import mongoose, { ConnectOptions } from "mongoose";
 dotenv.config()
 import path from 'path'
+import passport from 'passport'
 
 
 const app = express()
@@ -22,9 +24,15 @@ app.use('/posts', postRoutes)
 
 app.use('/photos', photoRoutes)
 
+app.use('/auth', authRoutes)
+
 
 app.use(express.static(path.join(__dirname, "public")));
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
 mongoose
   .connect(process.env.CONNECTION_URI as string, {useNewUrlParser: true,useUnifiedTopology: true,} as ConnectOptions)
   .catch((error)=> console.log(error))
+
+mongoose.connection.on('connected', () => {
+    console.log('Database Connected')
+})

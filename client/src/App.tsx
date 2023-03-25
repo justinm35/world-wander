@@ -1,23 +1,25 @@
 import { useState } from 'react'
 import './App.css'
-import PostsForm from './features/posts/PostsForm'
-import Map from './components/Map'
-import PostsList from './features/posts/PostsList'
-import Navbar from './features/navbar/navbar'
+import Navbar from './features/Navbar/navbar'
+import Home from './components/Home'
+import Auth from './features/AuthPage/Auth'
+import ErrorPage from './components/ErrorPage'
 import 'mapbox-gl/dist/mapbox-gl.css'
-
+import { PlusIcon } from '@heroicons/react/24/solid'
+import { createBrowserRouter, Router, RouterProvider, createRoutesFromElements, Route, Outlet, Routes} from 'react-router-dom'
+import { constants } from 'http2'
 
 function App() {
 
-const[postFormStatus, setPostFormStatus] = useState(true)
-const switchFormStatus = () => {setPostFormStatus((x)=> !x)}
+
   return (
-    <div className="App">
-      <Navbar/>
-      <Map/>
-      {postFormStatus ? <PostsForm switchFormStatus={switchFormStatus}/> : <button onClick={switchFormStatus} className=" transition duration-300 my-5 py-3 px-5 bg-purple-700 rounded-full text-xl font-sans font-medium text-white hover:bg-purple-600 hover:scale-110 absolute bottom-10 right-10">New Post</button>}
-       <PostsList/>
-    </div>
+    <>
+    <Navbar/>
+    <Routes>
+      <Route index element={<Home/>}/>
+      <Route path="/auth" element={<Auth/>}/>
+    </Routes>
+    </>
   )
 }
 

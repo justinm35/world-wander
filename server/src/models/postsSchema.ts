@@ -8,7 +8,8 @@ interface IPosts {
     destCoordinates?: object
     creator: string,
     createdAt: string,
-    _id?: string
+    _id?: string,
+    photos: string[]
 }
 
 const PostSchema = new Schema<IPosts>({
@@ -19,7 +20,8 @@ const PostSchema = new Schema<IPosts>({
     destCoordinates: {type: Object, required: true},
     creator: {type: String, required : false},
     createdAt: {type: String, required : false},
+    photos: {type: [String], required: false},
 });
 
-const PostModel = model<IPosts>('Posts', PostSchema)
-export default PostModel
+const PostModel = model<IPosts>('Posts', PostSchema);
+export default PostModel;
