@@ -4,8 +4,14 @@ import UsersModel, { UserModel } from '../models/userSchema'
 import { genPassword, validatePass, issueJWT } from '../utils/authUtils'
 
 export const authorizeUser = async (req: any, res: any) => {
-    res.status(200).json({success: true, msg: 'Authorized'})
+res.status(200).json({success: true, msg: 'Authorized'})
+    // res.status(200).json({success: true, msg: 'Authorized'})
 }
+export const fetchUserInfo = async(req: any, res: any) => {
+    UserModel.findOne({username: req.body.username})
+}
+
+
 export const loginUser = async (req: any, res: any, next: any) => {
     //Checks if user exists in DB first
     UserModel.findOne({username : req.body.username})
@@ -31,6 +37,8 @@ export const registerUser = async (req: any, res: any) => {
     //Creating new Mongo User Information
     const newUser = new UsersModel({
         username: req.body.username,
+        email: req.body.email,
+        profileImg: req.body.profileImg,
         hash: hash,
         salt: salt,
     });

@@ -1,4 +1,12 @@
 .filepond--panel-root {
-    background-color: #2b2b2b65;
-
+    background-color: #fff;
+    border:rgb(105, 105, 105) 2px solid;
+    height:400px
+}
+[data-drag-state="drag"]{
+    width: calc(30% - 0.5em);
+    height: calc(30% - 0.5em);
+}
+.filepond--root:not(.filepond){    
+    height:350px;
 }

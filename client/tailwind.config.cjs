@@ -6,6 +6,9 @@ module.exports = {
     //   'nunito': ['nunito', 'sans-serif'],
     //   'leagueSpartan': ['"My Font"', 'serif'] // Ensure fonts with spaces have " " surrounding it.
     // },
+      fontFamily: {
+        'roboto': ['roboto', 'sans-serif']
+      },
     extend: {
       
     },

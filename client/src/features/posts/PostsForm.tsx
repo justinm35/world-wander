@@ -12,7 +12,7 @@ import "filepond/dist/filepond.min.css";
 import './postForm.css'
 import { useDeletePhotoMutation } from './postsSlice';
 
-const PostsForm = ({switchFormStatus}:{switchFormStatus : React.SetStateAction<boolean>}) => {
+const PostsForm = ({setDisplayedComponent}:{setDisplayedComponent : React.SetStateAction<boolean>}) => {
 
   registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)  
 
@@ -82,12 +82,12 @@ const PostsForm = ({switchFormStatus}:{switchFormStatus : React.SetStateAction<b
 
   const renderFunc = ({ getInputProps, getSuggestionItemProps, suggestions, loading } : {getInputProps: any;getSuggestionItemProps: any; suggestions: ReadonlyArray<Suggestion>, loading: boolean; }) => (
    <div className="autocomplete-root">
-      <input className="block w-full p-4 text-white border border-gray-300 rounded-lg bg-transparent sm:text-md focus:ring-blue-500 focus:border-blue-50" {...getInputProps()} />
-      <div className="absolute bg-gray-900 rounded-md">
-              {loading && <div className='text-lg font-sans text-slate-100'>Loading...</div>}
+      <input className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" {...getInputProps()} placeholder='Destination'/>
+      <div className="absolute bg-white rounded-xl p-5 shadow-lg">
+              {loading && <div className='text-xl font-roboto text-zinc-800'>Loading...</div>}
               {suggestions.map(suggestion => {
                 return (
-                  <div key={suggestion.description} className='text-xl font-sans px-3 py-2 text-slate-100' {...getSuggestionItemProps(suggestion)}>
+                  <div key={suggestion.description} className=' transition text-3xl font-roboto font-medium px-3 py-2 text-zinc-800 hover:text-purple-700 hover:scale-105' {...getSuggestionItemProps(suggestion)}>
                     <span>{suggestion.description}</span>
                   </div>
                 );
@@ -98,37 +98,11 @@ const PostsForm = ({switchFormStatus}:{switchFormStatus : React.SetStateAction<b
   const [files, setFiles] = useState([]);
   return (
     
-  <div className="flex flex-col mt-5 backdrop-blur-lg  bg-slate-800/25 shadow-xl max-w-lg rounded-xl p-6 absolute bottom-10 right-10 w-3/6">
-    
-    
-    
-    
-    <div className="flex justify-between w-full h-full"><h1 className="font-sans text-3xl font-bold text-slate-200">New Wander</h1><button onClick={()=>switchFormStatus()}><XMarkIcon className="h-10 w-10 text-slate-200" /></button></div>
+  <div className="flex flex-col bg-white shadow-xl rounded-3xl p-6 w-3/6 ">
+    <div className="flex justify-between w-full h-full"><button onClick={()=>setDisplayedComponent()}><XMarkIcon className="h-10 w-10 text-zinc-800 mb-5" /></button></div>
       <form onSubmit={onSubmit}>
-      
-
-
-        
-          <label htmlFor="" className="block mb-1 ml-1 mt-5 text-lg font-sans place-self-start font-medium text-slate-100">Destination</label>
-          <PlacesAutocomplete id="destination" value={destinationData} onChange={handleDestChange}>
-                {renderFunc}
-          </PlacesAutocomplete>
-
-          <div className="flex space-x-10">
-            <label className="block mb-1 ml-1 mt-5 text-lg font-sans place-self-start font-medium w-1/2 text-slate-100">Date Traveled
-            <input id="dateTraveled" onChange={handleChange} value={postData.dateTraveled} type="date"  className="block w-full p-4 text-white border border-gray-300 rounded-lg bg-transparent sm:text-md focus:ring-blue-500 focus:border-blue-500 "/>
-            </label>
-
-            <label className="block mb-1 ml-1 mt-5 text-lg font-sans place-self-start font-medium text-slate-100">Length of Trip
-            <input id="tripLength" onChange={handleChange} value={postData.tripLength} type="number" className="block w-full p-4 text-white border border-gray-300 rounded-lg bg-transparent sm:text-md focus:ring-blue-500 focus:border-blue-500 "/>
-            </label>
-          </div>
-
-          <label className="block mb-1 ml-1 mt-5 text-lg font-sans place-self-start font-medium text-slate-100">Description</label>
-          <textarea id="description" onChange={handleChange} value={postData.description} className="mt-1 mb-6 block w-full  text-white border border-gray-300 rounded-lg bg-transparent sm:text-md focus:ring-blue-500 focus:border-blue-5000" rows={8} spellCheck="false"></textarea>
-          
-          <FilePond files={files} onupdatefiles={setFiles} instantUpload={true} allowReorder={true} allowMultiple={true}
-            allowFileEncode={true} maxFiles={3}
+      <FilePond files={files} onupdatefiles={setFiles} instantUpload={true} allowReorder={true} allowMultiple={true}
+            allowFileEncode={true} maxFiles={4}
             server={{
               url: "http://localhost:3500/photos",
               process: "/addPhoto",
@@ -146,12 +120,28 @@ const PostsForm = ({switchFormStatus}:{switchFormStatus : React.SetStateAction<b
               }
             }}
             name="images"
-            labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+            labelIdle='Add some pics! <span class="filepond--label-action">Browse</span>'
           />
+      
+
+
+        
+          <PlacesAutocomplete id="destination" value={destinationData} onChange={handleDestChange}>
+                {renderFunc}
+          </PlacesAutocomplete>
+
+          <div className="flex space-x-10">
+            <input id="dateTraveled" onChange={handleChange} value={postData.dateTraveled} type="date"  className="block p-5 w-full  mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
+
+            <input id="tripLength" onChange={handleChange} value={postData.tripLength} type="number" className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
+          </div>
+
+          <textarea id="description" onChange={handleChange} value={postData.description} className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" rows={5} spellCheck="false"></textarea>
+        
 
 
           <p className="text-red-700 font-sans font-medium text-2xl text-center pt-2"> {errorHandling}</p>
-          <button className="transition duration-300 my-5 p-3 bg-purple-700 rounded-full w-full  text-xl font-sans font-medium text-white hover:bg-purple-600 hover:scale-110">Post</button>
+          <button className="w-full bg-zinc-800 text-white rounded-md h-14 text-xl mt-10 active:scale-95 transition">Post</button>
       
       
       
