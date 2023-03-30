@@ -36,7 +36,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.listen(PORT, () => console.log(`###### Server running on port: ${PORT}`))
 
 const MONGO_URI = process.env.CONNECTION_URI;
-console.log(MONGO_URI)
 mongoose
   .connect(MONGO_URI as string)//{useNewUrlParser: true,useUnifiedTopology: true,} as ConnectOptions
   .catch((error)=> console.log(error))

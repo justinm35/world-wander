@@ -11,14 +11,17 @@ import './postForm.css'
 import { useDeletePhotoMutation } from './postsSlice';
 import { useAuthUserQuery } from '../AuthPage/AuthApiSlice';
 
-const PostsForm = ({setDisplayedComponent}:{setDisplayedComponent : React.SetStateAction<boolean>}) => {
+const PostsForm = ({setDisplayedComponent}:{setDisplayedComponent :  React.Dispatch<React.SetStateAction<boolean>>}) => {
 
   registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)  
 
   const [deletePhoto, result]= useDeletePhotoMutation()
+  
   type IPostData = {destination?:string, dateTraveled: string, tripLength: string, description: string}
+  //Config data inputs
   const [postData , setPostData] = useState<IPostData>({dateTraveled: '', tripLength: '', description: ''})
   const [destinationData, setDestinationData] = useState('')
+  const [files, setFiles] = useState([]);
 
   const clear = () => {
     setPostData({dateTraveled: '', tripLength: '', description: ''})
@@ -46,11 +49,14 @@ const PostsForm = ({setDisplayedComponent}:{setDisplayedComponent : React.SetSta
 const {data, isSuccess} = useAuthUserQuery()
   const [addNewPost, { isLoading, error}] = useAddNewPostMutation()
   const [errorHandling, setErrorHandling] = useState('')
+
   const onSubmit = async (e : React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     try {
       const coords = await geoCodeLatLng(destinationData)
-      const photos: string[] = files.map((file)=>file?.serverId)
+      const photos = files.map((file : any)=> file?.serverId)
+      console.log(photos)
+      console.log(files)
       const newPost = {...postData, destination: destinationData, destCoordinates: {...coords}, photos: photos, creator: data.user._id}
       await addNewPost(newPost).unwrap()
       clear()
@@ -77,7 +83,7 @@ const {data, isSuccess} = useAuthUserQuery()
       }
     }
   }
-const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, suggestions, loading } : {getInputProps: any;getSuggestionItemProps: any; suggestions: ReadonlyArray<Suggestion>, loading: boolean; }) => (
+const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, suggestions, loading } : {getInputProps: any;getSuggestionItemProps: any; suggestions: ReadonlyArray<any>, loading: boolean; }) => (
     <div className="autocomplete-root">
        <input className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" {...getInputProps()} placeholder='Destination'/>
        <div className="absolute bg-white rounded-xl p-5 shadow-lg">
@@ -93,14 +99,12 @@ const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, s
      </div>
    ), [destinationData])
 
-
-  const [files, setFiles] = useState([]);
   
   return (
   <div className="flex flex-col bg-white shadow-xl rounded-3xl p-6 md:w-5/6 lg:w-2/3 xl:w-1/3 w-3/4 z-10 ">
-    <div className="flex justify-between w-full h-full"><button onClick={()=>setDisplayedComponent()}><XMarkIcon className="h-10 w-10 text-zinc-800 mb-5" /></button></div>
+    <div className="flex justify-between w-full h-full"><button onClick={()=>setDisplayedComponent(x=>!x)}><XMarkIcon className="h-10 w-10 text-zinc-800 mb-5" /></button></div>
       <form onSubmit={onSubmit}>
-      <FilePond files={files} onupdatefiles={setFiles} instantUpload={true} allowReorder={true} allowMultiple={true}
+      <FilePond files={files} onupdatefiles={(e: any)=>setFiles(e)} instantUpload={true} allowReorder={true} allowMultiple={true}
             allowFileEncode={true} maxFiles={4}
             server={{
               url: "http://localhost:3500/photos",
@@ -121,14 +125,14 @@ const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, s
             name="images"
             labelIdle='Add some pics! <span class="filepond--label-action">Browse</span>'
           />
-          <PlacesAutocomplete id="destination" value={destinationData} onChange={handleDestChange}>
+          <PlacesAutocomplete value={destinationData} onChange={handleDestChange}>
                 {autoCompleteFill}
           </PlacesAutocomplete>
           <div className="flex space-x-10">
             <input id="dateTraveled" onChange={handleChange} value={postData.dateTraveled} type="date"  className="block p-5 w-full  mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
             <input id="tripLength" onChange={handleChange} value={postData.tripLength} type="number" className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
           </div>
-          <textarea id="description" onChange={handleChange} value={postData.description} className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" rows={5} spellCheck="false"></textarea>
+          <textarea id="description" onChange={(e: any)=>handleChange(e)} value={postData.description} className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" rows={5} spellCheck="false"></textarea>
           <p className="text-red-700 font-sans font-medium text-2xl text-center pt-2"> {errorHandling}</p>
           <button className="w-full bg-zinc-800 text-white rounded-md h-14 text-xl mt-10 active:scale-95 transition">Post</button>
       </form>

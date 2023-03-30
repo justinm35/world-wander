@@ -73,7 +73,7 @@ const Register = ({setIsSignIn: setIsSignIn} : {setIsSignIn : React.Dispatch<Rea
                 allowImageEdit={true}
                 acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}
                 allowFileEncode={true}
-                onaddfile={(error, file) => {console.log(error); setBase64ProfileImg(()=> file?.getFileEncodeBase64String())}}
+                onaddfile={(error, file : any) => {console.log(error); setBase64ProfileImg(()=> file?.getFileEncodeBase64String())}}
                 />
               <input id="username" type="username" placeholder="Username" value={userData.username} onChange={(e)=>{handleChange(e)}} className=" w-4/6 p-4  font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/>
               <input id="email" type="email" placeholder="Email" value={userData.email} onChange={(e)=>{handleChange(e)}} className=" w-4/6 p-4  mt-5 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/>

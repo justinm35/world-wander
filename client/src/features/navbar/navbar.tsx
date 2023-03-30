@@ -5,24 +5,14 @@ import { useAuthUserQuery } from '../AuthPage/AuthApiSlice'
 import { useNavigate } from 'react-router-dom'
 
 
-const navbar = () => {
-const [toggleNav, setToggleNav] = useState(false)
-
-
-// const profileImages = () => {
-    //     return <UserCircleIcon className="w-10 h-10 text-zinc-800"/>:
-    //     if(isSuccess){
-        //         return <img src={'data:image/png;base64,'+ data?.data?.user?.profileImg} className="w-10 h-10 text-zinc-800 rounded-full" /> 
-        //         console.log(data?.data?.user?.profileImg)
-        //     }
-        // }
-const navigate = useNavigate();
-        const {data, isSuccess, isLoading}= useAuthUserQuery()
+const Navbar = () => {
+    const [toggleNav, setToggleNav] = useState(false)
+    const navigate = useNavigate();
+    const {data, isSuccess, isLoading}= useAuthUserQuery()
         
     let profileImage;
     if(isLoading) {
-        // profileImage =  <UserCircleIcon className="w-12 h-12 text-zinc-800"/>
-            profileImage = <div className="animate-pulse w-12 h-12 rounded-full bg-zinc-300"/>
+        profileImage = <div className="animate-pulse w-12 h-12 rounded-full bg-zinc-300"/>
     }else{
         profileImage =  <img src={'data:image/png;base64,'+ data?.user?.profileImg} className="w-14 h-14 text-zinc-800 rounded-full" /> 
     }
@@ -72,4 +62,4 @@ const navigate = useNavigate();
   )
 }
 
-export default navbar
+export default Navbar

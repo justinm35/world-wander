@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react'
 import PostsForm from '../Posts/PostsForm'
 import PostsList from '../Posts/PostsList'
 import {useFetchAllPostsQuery} from '../Posts/postsSlice'
-import Map from '../Map'
+import Map from './Map'
 import PostControls from '../Posts/PostControls'
 import { Outlet, Route } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ import { Outlet, Route } from 'react-router-dom'
 
 const UserHome = () => {
     const {data, error, isLoading,isError, isSuccess} = useFetchAllPostsQuery('fetchAllPosts')
-    const[displayedPost, setDisplayedPost] = useState<number| null>(null)
+    const[displayedPost, setDisplayedPost] = useState<number>(0)
     console.log(displayedPost)
  
     const postControls = (x: string) => {
@@ -22,7 +22,7 @@ const UserHome = () => {
             setDisplayedPost((prevPost) => prevPost = prevPost - 1)
         }
     }
-    const [dispalayedComponent, setDisplayedComponent] = useState(true)
+    const [dispalayedComponent, setDisplayedComponent] = useState(true) 
 
 
   return (  
@@ -31,8 +31,8 @@ const UserHome = () => {
         <div className="flex flex-col h-screen w-full pl-0 md:pl-11 lg:pl-20 xl:pl-52 pb-10 xl:pb-20 justify-end items-center xl:items-start">
             {dispalayedComponent ?
                 <><PostsList displayedPost={displayedPost}/>
-                <PostControls setDisplayedComponent={()=>setDisplayedComponent(x=>!x)} changePost={postControls}/></>
-                :<PostsForm setDisplayedComponent={()=>setDisplayedComponent(x=>!x)}/>
+                <PostControls setDisplayedComponent={setDisplayedComponent} changePost={postControls}/></>
+                :<PostsForm setDisplayedComponent={setDisplayedComponent}/>
             }
             
         </div>

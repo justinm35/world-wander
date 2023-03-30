@@ -6,7 +6,7 @@ import PostExcerpt from './PostExcerpt';
 import { GlobeAsiaAustraliaIcon} from '@heroicons/react/24/solid';
 
 let content: ReactElement;
-const PostsList = ({displayedPost}: {displayedPost: string}) => {
+const PostsList = ({displayedPost}: {displayedPost: number}) => {
   const {data: auth, isSuccess: isFuffilled} = useAuthUserQuery()
   const {data: post, error, isLoading,isError, isSuccess} = useFetchUserPostsQuery(auth?.user?._id , {skip : !isFuffilled});
 
