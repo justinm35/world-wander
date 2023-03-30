@@ -5,6 +5,7 @@
   "scripts": {
     "start": "vite --port 3000",
     "build": "tsc && vite build",
+    "prodbuild": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {

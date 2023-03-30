@@ -30,7 +30,7 @@ const ProfileSettings = () => {
         let value = event.target.value;
         setUpdatedData({...updatedData, [event.target.id] : value})
     }
-    const handleSubmitChanges = async (e) => {
+    const handleSubmitChanges = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const coords = await geoCodeLatLng(destinationData)
         console.log(coords)
@@ -42,14 +42,14 @@ const ProfileSettings = () => {
     const handleDestChange = (value: string) => {
         setDestinationData(value)
       }
-    const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, suggestions, loading } : {getInputProps: any;getSuggestionItemProps: any; suggestions: ReadonlyArray<Suggestion>, loading: boolean; }) => (
+    const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, suggestions, loading } : {getInputProps: any;getSuggestionItemProps: any; suggestions: any, loading: boolean; }) => (
         <div className="autocomplete-root">
            <label className="font-roboto text-xl font-medium">Location
             <input className="w-full p-3 mt-1 font-roboto font-medium text-lg text-zinc-800 border-2 border-gray-300 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg " {...getInputProps()} placeholder="Your current location (Dont worry, it's not public)"/>
            </label>
            <div className="absolute bg-white rounded-xl shadow-lg mt-1">
                    {loading && <div className='text-xl font-roboto text-zinc-800'>Loading...</div>}
-                   {suggestions.map(suggestion => {
+                   {suggestions.map((suggestion: any) => {
                      return (
                        <div key={suggestion.description} className=' transition text-lg font-roboto font-medium px-6 py-2 text-zinc-800 hover:text-purple-700 hover:scale-105' {...getSuggestionItemProps(suggestion)}>
                          <span>{suggestion.description}</span>
@@ -82,7 +82,7 @@ const ProfileSettings = () => {
              <label className="font-roboto text-xl font-medium">Email
                 <input id="email" value={updatedData.email} type="email" placeholder="Your email"  onChange={handleChange} className=" w-full p-3 mt-1  font-roboto font-medium text-lg text-zinc-800 border-2 border-gray-300 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/>
              </label>
-             <PlacesAutocomplete id="destination" value={destinationData} onChange={handleDestChange}>
+             <PlacesAutocomplete value={destinationData} onChange={handleDestChange}>
                 {autoCompleteFill}
             </PlacesAutocomplete>
              <button className="w-full bg-zinc-800 text-white rounded-md h-14 text-xl active:scale-95 transition disabled:bg-zinc-500" disabled={isLoading? true : false}>Save Changes </button>
