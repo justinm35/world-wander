@@ -21,9 +21,22 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body: userData,
             })
+        }),
+        updateUser: builder.mutation({
+            query: (updatedUser) => ({
+                url:'/auth/updateuser',
+                method: "PATCH",
+                body: updatedUser
+            })
+        }),
+        fetchAllusers: builder.query<any, void>({
+            query: () => ({
+                url:"/auth/userlist",
+                method: "GET"
+            })
         })
     })
 })
 
 
-export const { useAuthUserQuery, useRegisterUserMutation, useLoginUserMutation } = authApiSlice;
+export const { useAuthUserQuery, useRegisterUserMutation, useLoginUserMutation, useFetchAllusersQuery, useUpdateUserMutation } = authApiSlice;

@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
-import { Dispatch, SetStateAction } from "react";
+import { useState } from 'react'
 import AuthBG from  '../../assets/AuthBG.png' 
-import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import { FilePond, registerPlugin} from 'react-filepond';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
@@ -16,27 +14,39 @@ import "./register.css"
 import { useRegisterUserMutation } from './AuthApiSlice';
 
 const Register = ({setIsSignIn: setIsSignIn} : {setIsSignIn : React.Dispatch<React.SetStateAction<boolean>>}) => {
-
+  //Config plugins for FilePond Input
   registerPlugin( FilePondPluginFileValidateType, FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginImageCrop,
     FilePondPluginImageResize, FilePondPluginImageTransform,FilePondPluginImageEdit, FilePondPluginFileEncode);
+  
+  const [base64ProfileImg, setBase64ProfileImg] = useState('')
+  const [userData, setUserData] = useState({username: "", email: "", password: ""})
 
-    const [base64ProfileImg, setBase64ProfileImg] = useState('')
-    const [userData, setUserData] = useState({username: "", email: "", password: ""})
+  const [ registerUser, {data ,isLoading, isError}] = useRegisterUserMutation()
+
     const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
         let value = event.target.value
         setUserData({...userData, [event.target.id] : value})
     }
-    const [ registerUser, {data ,isLoading, isError}] = useRegisterUserMutation()
-    console.log(userData)
+    const validateForm =  (newUser: any): string => {
+      if(newUser.email.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+        return (newUser.email + 'YEs');
+      }else{return ('No')}
+    }
     const handleSubmit = async(e : React.FormEvent<HTMLButtonElement>) => {
+      const newUserData = {...userData, profileImg: base64ProfileImg}
+      console.log(validateForm(newUserData))
       e.preventDefault()
+
       try {
-        await registerUser({...userData, profileImg: base64ProfileImg}).unwrap()
-        console.log(userData)
+        await registerUser({...userData, profileImg: base64ProfileImg})
+            .then((a)=>console.log(a))
+            .catch((err)=>console.log(err))
+        console.log(data)
       } catch (error) {
         console.log(error)
       }
     }
+
   return (
     <div className="w-screen flex h-screen justify-center pt-40 over">
     <div className="w-full m-5 xl:w-5/6 h-5/6 bg-white rounded-3xl  shadow-md p-5 flex">

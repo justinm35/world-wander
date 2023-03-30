@@ -10,9 +10,12 @@ export const postsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Posts"],
     }),
+    fetchUserPosts: builder.query({
+      query: (id) => `/posts/userposts/${id}`,
+      providesTags: ["Posts"]
+    }),
     fetchAllPosts: builder.query({
-      query: () => "/posts",
-      providesTags: ["Posts"],
+      query: () => "/posts"
     }),
     deletePost: builder.mutation({
       query: ({ id }) => ({
@@ -29,4 +32,4 @@ export const postsApiSlice = apiSlice.injectEndpoints({
     })
   }),
 });
-export const { useAddNewPostMutation, useFetchAllPostsQuery, useDeletePostMutation, useDeletePhotoMutation } = postsApiSlice;
+export const { useAddNewPostMutation, useFetchAllPostsQuery, useDeletePostMutation, useDeletePhotoMutation, useFetchUserPostsQuery } = postsApiSlice;

@@ -9,8 +9,8 @@ import { createBrowserRouter, Router, RouterProvider, createRoutesFromElements, 
 import { constants } from 'http2'
 import UserHome from './features/UserHome/UserHome'
 import PrivateRoutes from './Utils/PrivateRoutes'
-import UserSettings from './features/UserSettings'
-import Landing from './components/Landing/Landing'
+import Account from './features/Account/Account'
+import Landing from './features/Landing/Landing'
 
 
 function App() {
@@ -23,10 +23,11 @@ function App() {
       <Route index element={<Landing/>}/>
       <Route path="/auth" element={<Auth/>}/>
       <Route element={<PrivateRoutes/>}>
-          <Route element={<UserSettings/>} path="/settings"/>
+          <Route element={<Account/>} path="/account/*"/>
           <Route path="/mywanders" element={<UserHome/>}/>
       </Route>
     </Routes>
+      <Outlet/>
     </>
   )
 }

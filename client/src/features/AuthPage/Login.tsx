@@ -13,12 +13,15 @@ const Login = ({setIsSignIn: setIsSignIn} : {setIsSignIn : React.Dispatch<React.
         setUserData({...userData, [event.target.id] : value})
     }
     const [ loginUser, {status, error, data}] = useLoginUserMutation()
+    const { refetch } = useAuthUserQuery()
     const handleSubmit = async(e : React.FormEvent<HTMLButtonElement>) => {
       e.preventDefault()
       try {
         const response = await loginUser(userData).unwrap()
         localStorage.setItem('Bearer' , response.token)
+        refetch()
         navigate('/mywanders')
+
         
       } catch (error) {
         console.log(error)
