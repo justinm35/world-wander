@@ -2,6 +2,7 @@
   margin: 0;
 }
 body{
+  width:100vw;
   background-color: #F3F5F7;
   overflow-x: hidden;
 }

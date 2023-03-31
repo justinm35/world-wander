@@ -4,6 +4,8 @@ import { useAuthUserQuery } from '../AuthPage/AuthApiSlice';
 import { ReactElement } from 'react';
 import PostExcerpt from './PostExcerpt';
 import { GlobeAsiaAustraliaIcon} from '@heroicons/react/24/solid';
+import { render } from 'react-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 
 let content: ReactElement;
 const PostsList = ({displayedPost}: {displayedPost: number}) => {
@@ -23,9 +25,12 @@ const PostsList = ({displayedPost}: {displayedPost: number}) => {
   }
 
   return (
-      <div className="md:w-5/6 lg:w-2/3 xl:w-1/3 w-3/4 z-10">
+    <AnimatePresence>
+
+      <div key="modal" className="md:w-5/6 lg:w-2/3 xl:w-1/3 w-3/4 z-10">
       {content}
       </div>
+    </AnimatePresence>
   )
 }
 

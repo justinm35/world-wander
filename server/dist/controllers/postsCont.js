@@ -12,28 +12,49 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createPost = void 0;
+exports.deletePost = exports.createPost = exports.fetchUserPosts = exports.fetchPosts = void 0;
 const postsSchema_1 = __importDefault(require("../models/postsSchema"));
+const fetchPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const allPosts = yield postsSchema_1.default.find();
+        res.status(200).json({ allPosts });
+    }
+    catch (error) {
+        res.status(404).json({ message: 'An error occured in the server' + error });
+    }
+});
+exports.fetchPosts = fetchPosts;
+const fetchUserPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const allPosts = yield postsSchema_1.default.find({ creator: req.params.id });
+        res.status(200).json({ allPosts });
+        // const userPosts = await PostModel.find({'creator': req.body}) 
+        // res.status(200).json({userPosts})
+    }
+    catch (error) {
+        res.status(404).json({ message: 'An error occured in the server' + error });
+    }
+});
+exports.fetchUserPosts = fetchUserPosts;
 const createPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const post = req.body;
-    const newPost = new postsSchema_1.default(Object.assign(Object.assign({}, post), { creator: 'tempCreator' }));
+    const newPost = new postsSchema_1.default(Object.assign(Object.assign({}, post), { createdAt: new Date().toISOString() }));
     try {
-        console.log(req.body);
         yield newPost.save();
         res.status(201).json({ newPost });
     }
     catch (error) {
-        res.status(409).json({ message: 'FAILEEEED' });
+        res.status(409).json({ message: error });
     }
 });
 exports.createPost = createPost;
-// export const createPost = async (req, res) => {
-//     const post = req.body;
-//     const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
-//     try {
-//         await newPostMessage.save();
-//         res.status(201).json(newPostMessage );
-//     } catch (error) {
-//         res.status(409).json({ message: error.message });
-//     }
-//   }
+const deletePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield postsSchema_1.default.findByIdAndDelete(req.params.id);
+        res.status(201).json({ message: 'successfully deleted' });
+    }
+    catch (error) {
+        res.status(404).json({ message: error });
+    }
+});
+exports.deletePost = deletePost;

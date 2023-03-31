@@ -6,6 +6,7 @@ import PlacesAutocomplete, {geocodeByAddress, getLatLng,} from 'react-places-aut
 const ProfileSettings = () => {
     const {data, isSuccess: infoSuccess} = useAuthUserQuery();
     const [updatedUser, {isLoading, isSuccess }] = useUpdateUserMutation()
+    const [destinationData, setDestinationData] = useState('')
 
     const [updatedData, setUpdatedData] = useState({firstName: '', lastName: '', username: '', email: '', profileImg: '', baseLocation: {location: '', lat: '', lng: ''} })
     useEffect(()=> {
@@ -37,7 +38,6 @@ const ProfileSettings = () => {
         const updatedUserTotal = {...updatedData, baseLocation: {location : destinationData, ...coords}}
         updatedUser(updatedUserTotal)
     }
-    const [destinationData, setDestinationData] = useState('')
 
     const handleDestChange = (value: string) => {
         setDestinationData(value)

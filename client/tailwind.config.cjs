@@ -7,7 +7,8 @@ module.exports = {
     //   'leagueSpartan': ['"My Font"', 'serif'] // Ensure fonts with spaces have " " surrounding it.
     // },
       fontFamily: {
-        'roboto': ['roboto', 'sans-serif']
+        'roboto': ['roboto', 'sans-serif'],
+        'inter' : ['Inter', 'sans-serif']
       },
     extend: {
       

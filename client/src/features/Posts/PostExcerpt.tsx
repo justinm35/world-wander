@@ -3,11 +3,16 @@ import { useDeletePostMutation } from './postsSlice'
 import moment from 'moment'
 import {EllipsisHorizontalIcon, HandThumbUpIcon} from '@heroicons/react/24/solid'
 import {EllipsisHorizontalCircleIcon} from '@heroicons/react/24/solid'
+import { motion } from 'framer-motion'
 
 const PostExcerpt = ({ post }:{ post: any}) => {
     const [deletePost] = useDeletePostMutation()
   return (
-    <div className=' flex flex-col w-full relative mb-5 bg-white px-3 pt-3 rounded-2xl shadow-lg'>
+    <motion.div initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0}} 
+                key={post._id} 
+                className='flex flex-col w-full relative mb-5 bg-white px-3 pt-3 rounded-2xl shadow-lg'>
       <div className="w-full flex overflow-scroll scroll snap-x  snap-mandatory">
       {post.photos.map((imageId: string)=>{
         const [imgLoaded, setImgLoaded] = useState(false)
@@ -29,7 +34,7 @@ const PostExcerpt = ({ post }:{ post: any}) => {
         <button className="border border-zinc-500 w-fit h-fit rounded-md hover:border-zinc-800">{<EllipsisHorizontalIcon className="w-12 h-7 text-zinc-500 hover:text-zinc-800"/>}</button>
       </div>
       {/* <button type="button" onClick={()=> deletePost({id: post._id})} className="font-roboto text-center text-md text-slate-400 underline hover:text-red-400 ">Delete This Post</button> */}
-    </div>
+    </motion.div>
   )
 }
 

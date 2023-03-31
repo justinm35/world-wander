@@ -25,16 +25,12 @@ const {data, isSuccess} = useFetchAllusersQuery()
             attributionControl: false,
             trackResize: true,
           })
-          .setMaxZoom(3)
+          .setMaxZoom(2)
           .setMinZoom(1)
     },[]);//end of use effect
           // //clean up map on unmount
           // return () => map.remove();
           // }, []);//end of useEffect
-          if(isSuccess){
-            console.log(data)
-            // map.current?.flyTo({ center: [(Math.random() - 0.5) * 360, (Math.random() - 0.5) * 100],essential: true})
-          }
       
 
     useEffect(()=>{

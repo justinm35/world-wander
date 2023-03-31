@@ -1,4 +1,4 @@
-.landingMapContainer {
+/* .landingMapContainer {
     height: 100vh;
     width:100vw;
     bottom:0;
@@ -7,5 +7,17 @@
   @media only screen and (max-width: 1280px) {
     .landingMapContainer {  
         bottom:-200px;
+    }
+  } */
+  .landingMapContainer {
+    height: 100vh;
+    width:100vw;
+    right:-20vw;
+    position: absolute;
+  }
+  @media only screen and (max-width: 1280px) {
+    .landingMapContainer {
+      width:100vw;
+      right:0;
     }
   }

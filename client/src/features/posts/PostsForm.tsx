@@ -12,7 +12,7 @@ import { useDeletePhotoMutation } from './postsSlice';
 import { useAuthUserQuery } from '../AuthPage/AuthApiSlice';
 
 const PostsForm = ({setDisplayedComponent}:{setDisplayedComponent :  React.Dispatch<React.SetStateAction<boolean>>}) => {
-
+  
   registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)  
 
   const [deletePhoto, result]= useDeletePhotoMutation()
@@ -86,11 +86,11 @@ const {data, isSuccess} = useAuthUserQuery()
 const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, suggestions, loading } : {getInputProps: any;getSuggestionItemProps: any; suggestions: ReadonlyArray<any>, loading: boolean; }) => (
     <div className="autocomplete-root">
        <input className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" {...getInputProps()} placeholder='Destination'/>
-       <div className="absolute bg-white rounded-xl p-5 shadow-lg">
+       <div className="absolute bg-white rounded-xl  shadow-lg">
                {loading && <div className='text-xl font-roboto text-zinc-800'>Loading...</div>}
                {suggestions.map(suggestion => {
                  return (
-                   <div key={suggestion.description} className=' transition text-3xl font-roboto font-medium px-3 py-2 text-zinc-800 hover:text-purple-700 hover:scale-105' {...getSuggestionItemProps(suggestion)}>
+                   <div key={suggestion.description} className='transition text-3xl font-roboto font-medium px-10 py-2 text-zinc-800 hover:text-purple-700 hover:scale-105 max-w-lg truncate' {...getSuggestionItemProps(suggestion)}>
                      <span>{suggestion.description}</span>
                    </div>
                  );
