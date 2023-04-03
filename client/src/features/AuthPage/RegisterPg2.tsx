@@ -56,7 +56,7 @@ const RegisterPg2 = ({handleChange, userData, setUserData}) => {
             allowFileEncode={true}
             onaddfile={(error, file : any) => {console.log(error); setUserData({...userData, profileImg : file?.getFileEncodeBase64String()})}}
         />
-        <input id="username" type="username" placeholder="Username" value={userData.username} onChange={(e)=>{handleChange(e)}} className=" w-4/6 p-4 mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/> 
+        <input id="username" type="username" placeholder="Username" value={userData.username} onChange={(e)=>{handleChange(e)}} className=" w-4/6 p-3 mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/> 
         <button onClick={(e)=>handleSubmit(e)} className="w-4/6 bg-zinc-800 text-white rounded-md h-14 text-xl mt-6 active:scale-95 transition flex items-center justify-center">Create Account</button>
     </div>
   )
