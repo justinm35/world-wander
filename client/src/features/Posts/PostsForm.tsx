@@ -85,7 +85,7 @@ const {data, isSuccess} = useAuthUserQuery()
   }
 const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, suggestions, loading } : {getInputProps: any;getSuggestionItemProps: any; suggestions: ReadonlyArray<any>, loading: boolean; }) => (
     <div className="autocomplete-root">
-       <input className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" {...getInputProps()} placeholder='Destination'/>
+       <input className="block p-5 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" {...getInputProps()} placeholder='e.g. Rome, Italy'/>
        <div className="absolute bg-white rounded-xl  shadow-lg">
                {loading && <div className='text-xl font-roboto text-zinc-800'>Loading...</div>}
                {suggestions.map(suggestion => {
@@ -101,40 +101,54 @@ const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, s
 
   
   return (
-  <div className="flex flex-col bg-white shadow-xl rounded-3xl p-6 md:w-5/6 lg:w-2/3 xl:w-1/3 w-3/4 z-10 ">
+  <div className="flex flex-col bg-white shadow-xl rounded-3xl p-6 md:w-11/12 lg:w-full xl:w-1/2 w-10/12 z-10  -ml-20">
     <div className="flex justify-between w-full h-full"><button onClick={()=>setDisplayedComponent(x=>!x)}><XMarkIcon className="h-10 w-10 text-zinc-800 mb-5" /></button></div>
-      <form onSubmit={onSubmit}>
-      <FilePond files={files} onupdatefiles={(e: any)=>setFiles(e)} instantUpload={true} allowReorder={true} allowMultiple={true}
-            allowFileEncode={true} maxFiles={4}
-            server={{
-              url: "http://localhost:3500/photos",
-              process: "/addPhoto",
-              //Revert method should be passing id as req.body
-              // revert: `/removePhoto?id=${files[0]?.serverId}`
-              revert: async (uniqueId, load, error) => {
-                console.log("removing: " + uniqueId)
-                try {
-                  await deletePhoto(uniqueId)
-                  load();
-                } catch (error) {
-                  console.log(error)
+      <form onSubmit={onSubmit} className="flex flex-row space-x-5">
+      <div className="w-1/2">
+        <label className="font-roboto text-xl font-medium flex flex-col">Photos
+          <FilePond files={files} onupdatefiles={(e: any)=>setFiles(e)} instantUpload={true} allowReorder={true} allowMultiple={true}
+              allowFileEncode={true} maxFiles={4}
+              server={{
+                url: "http://localhost:3500/photos",
+                process: "/addPhoto",
+                //Revert method should be passing id as req.body
+                // revert: `/removePhoto?id=${files[0]?.serverId}`
+                revert: async (uniqueId, load, error) => {
+                  console.log("removing: " + uniqueId)
+                  try {
+                    await deletePhoto(uniqueId)
+                    load();
+                  } catch (error) {
+                    console.log(error)
+                  }
+                  error('oops')
                 }
-                error('oops')
-              }
-            }}
-            name="images"
-            labelIdle='Add some pics! <span class="filepond--label-action">Browse</span>'
-          />
+              }}
+              name="images"
+              labelIdle='Add some pics! <span class="filepond--label-action">Browse</span>'
+            />
+        </label>
+      </div>
+      <div className="w-1/2 space-y-3">
+        <label className="font-roboto text-xl font-medium flex flex-col">Destination
           <PlacesAutocomplete value={destinationData} onChange={handleDestChange}>
-                {autoCompleteFill}
+            {autoCompleteFill}
           </PlacesAutocomplete>
-          <div className="flex space-x-10">
-            <input id="dateTraveled" onChange={handleChange} value={postData.dateTraveled} type="date"  className="block p-5 w-full  mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
-            <input id="tripLength" onChange={handleChange} value={postData.tripLength} type="number" className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
-          </div>
-          <textarea id="description" onChange={(e: any)=>handleChange(e)} value={postData.description} className="block p-5 w-full mt-10 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" rows={5} spellCheck="false"></textarea>
-          <p className="text-red-700 font-sans font-medium text-2xl text-center pt-2"> {errorHandling}</p>
+        </label>
+        <div className="flex space-x-3">
+        <label className="font-roboto text-xl font-medium flex flex-col w-full">Date Travled
+          <input id="dateTraveled" onChange={handleChange} value={postData.dateTraveled} type="date"  className="block p-5 w-full  font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
+        </label>
+        <label className="font-roboto text-xl font-medium flex flex-col w-full">Date Travled
+          <input id="tripLength" onChange={handleChange} value={postData.tripLength} type="number" className="block p-5 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
+        </label>
+        </div>
+        <label className="font-roboto text-xl font-medium flex flex-col">Date Travled
+          <textarea placeholder="Beautiful architecture and amazing food!..." id="description" onChange={(e: any)=>handleChange(e)} value={postData.description} className="block p-2 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" rows={5} spellCheck="false"></textarea>
+        </label>
+        <p className="text-red-700 font-sans font-medium text-2xl text-center pt-2"> {errorHandling}</p>
           <button className="w-full bg-zinc-800 text-white rounded-md h-14 text-xl mt-10 active:scale-95 transition">Post</button>
+      </div>     
       </form>
   </div>)
 }

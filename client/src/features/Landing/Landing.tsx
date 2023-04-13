@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import LandingMap from './LandingMap'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
+import travlerGuy from '../../assets/travlerGuy.png'
 
 const Landing = () => {
   return (
@@ -12,7 +13,7 @@ const Landing = () => {
         <Link to="/auth/register"><button className="mt-12 px-5 ml-1 py-3 text-purple-700 font-roboto font-normal border-4 border-zinc-300 rounded-lg flex items-center text-2xl hover:border-purple-700 hover:shadow-lg pointer-events-auto transition active:translate-x-4 ">Join Us <ArrowRightIcon className='text-purple-700 w-8 h-8 ml-3'/></button></Link>
       </div>
       <div className="flex w-fit absolute bottom-20 left-36 items-center">
-          <div className="rounded-full h-24 w-24 bg-purple-300 mr-3"></div>
+          <div className="rounded-full h-24 w-24 bg-purple-300 mr-3 flex items-center justify-center"><img className="-ml-1" width="50"src={travlerGuy}/></div>
           <div>
             <p className="text-zinc-800 font-roboto font-medium text-xl">100+ Wanderers</p>
             <p className="text-zinc-500 font-roboto font-medium text-md w-60 leading-tight">Over 100 people around the world sharing their adventures.</p>

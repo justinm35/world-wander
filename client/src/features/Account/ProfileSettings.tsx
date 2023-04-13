@@ -62,11 +62,14 @@ const ProfileSettings = () => {
 
     if(infoSuccess) {
         return (   
-            <div className="w-2/3 lg:w-1/3 xl:w-1/3 2xl:w-1/4">
-            <form className="flex flex-col w-full space-y-5" onSubmit={handleSubmitChanges}>
+            <div className="w-2/3 lg:w-1/3 xl:w-1/3 2xl:w-1/4 ">
+            <form className="flex flex-col w-full space-y-4" onSubmit={handleSubmitChanges}>
               <div className="flex">
-              <img src={'data:image/png;base64,' + updatedData.profileImg} className="w-32 rounded-full mb-5"/>
-              <p className="ont-roboto text-2xl font-medium mt-10 ml-6">Avatar</p>
+              <img src={'data:image/png;base64,' + updatedData.profileImg} className="w-28 rounded-full mb-5"/>
+                <div className="font-roboto mt-7 ml-6">
+                  <p className="text-xl font-medium  -mb-1">Avatar</p>
+                  <a className="text-sm text-zinc-600 font-normal hover:underline">Change Photo</a>
+                </div>
               </div>
               <div className="flex w-full">
                 <label className="font-roboto text-xl font-medium flex flex-col w-1/2 mr-4">First Name

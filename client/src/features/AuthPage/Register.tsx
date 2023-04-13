@@ -23,7 +23,7 @@ const Register = () => {
     }
 
   return (
-    <div className="w-screen flex h-screen justify-center pt-40 over">
+    <div className="w-screen flex h-screen justify-center items-center">
     <div className="w-full m-5 xl:w-5/6 h-5/6 bg-white rounded-3xl  shadow-md p-5 flex">
         <img src={AuthBG} className="h-full rounded-3xl  object-cover mr-5 w-0 lg:w-1/2 invisible lg:visible"/>
       <div className="w-full lg:w-1/2 flex flex-col items-center ">

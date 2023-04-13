@@ -4,7 +4,9 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import './Map.css'
 import mapboxgl, { MarkerOptions } from "mapbox-gl";
 import { MapPinIcon } from "@heroicons/react/24/solid";
-import { useFetchAllPostsQuery } from "../Posts/postsSlice";
+import { useDispatch } from "react-redux";
+import { changeDisplayedPost } from "../Posts/displaySlice";
+import { useSelector } from "react-redux";
 import { useAuthUserQuery } from "../AuthPage/AuthApiSlice";
 import { useFetchUserPostsQuery } from "../Posts/postsSlice";
 
@@ -14,6 +16,8 @@ const mapBoxStyle = "mapbox://styles/justinm3501/clfej09fp000e01pk1192aw6u?optim
 
 
 const Map = ({setDisplayedPost}: {setDisplayedPost : React.Dispatch<React.SetStateAction<number>>}) => {
+  const dispatch = useDispatch()
+
   //Fetching all the posts from the logged in user
   const {data: auth, isSuccess: isFuffilled} = useAuthUserQuery()
   const {data: posts, error, isLoading,isError, isSuccess} = useFetchUserPostsQuery(auth?.user?._id , {skip : !isFuffilled});
@@ -34,15 +38,29 @@ const Map = ({setDisplayedPost}: {setDisplayedPost : React.Dispatch<React.SetSta
 
     return ()=> map.current?.remove
   },[]);
-
+  //Reading the redux state and subscribing to any changes so state changes triggere re-render
+  const displayedPost = useSelector((state) => state?.displaySlice)
+  
+  useEffect(() => { // Trigger the fly to once the global state is changed
+   const displayedIndex = posts?.allPosts.findIndex((post)=> post._id === displayedPost.idCurrent)
+    if(displayedPost.idCurrent.length >= 10) {
+      map.current?.flyTo({
+        center: [ posts?.allPosts[displayedIndex]?.destCoordinates?.lng, posts?.allPosts[displayedIndex]?.destCoordinates?.lat],
+        essential: true,
+        duration: 2000
+        });
+     }
+  }, [displayedPost])
+ 
   //Marker Icon
   interface ChildProps{markerClicked: (arg: string) => void;id: string;destination: string}
   const Marker : React.FC<ChildProps>= ({markerClicked, id, destination}) => {
     return (<button onClick={()=>markerClicked(id)}><MapPinIcon className="transition text-red-500 w-12 h-12 hover:animate-bounce"/><div className="hidden hover:show p-5 bg-red-300">Toronto, Canada</div></button>)
   }
   const markerClicked = (id: string) => {
-    const displayedPostIndex = posts.allPosts.findIndex((x: any)=> x._id === id) 
-    setDisplayedPost(displayedPostIndex)
+    dispatch(changeDisplayedPost(id))
+    // const displayedPostIndex = posts.allPosts.findIndex((x: any)=> x._id === id) 
+    // setDisplayedPost(displayedPostIndex)
   }
   //Place all of the markers from props.
   const [markerList, setMarkerList] = useState<any>([])
@@ -64,6 +82,7 @@ const Map = ({setDisplayedPost}: {setDisplayedPost : React.Dispatch<React.SetSta
       })
     }
   },[posts,isSuccess])
+
 
   return (<>
     <div ref={mapContainer} className="map-container" >

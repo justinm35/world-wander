@@ -5,6 +5,7 @@ import {useFetchAllPostsQuery} from '../Posts/postsSlice'
 import Map from './Map'
 import PostControls from '../Posts/PostControls'
 import { Outlet, Route } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 
 
 
@@ -26,18 +27,21 @@ const UserHome = () => {
 
 
   return (  
-    <>
+    <AnimatePresence>
         <Map setDisplayedPost={setDisplayedPost}/>
-        <div className="flex flex-col h-screen w-full pl-0 md:pl-11 lg:pl-20 xl:pl-52 pb-10 xl:pb-20 justify-end items-center xl:items-start">
+        <motion.div 
+            initial={{opacity:0, y: -200}}
+            animate={{opacity:1, y:0}}
+            exit={{opacity:0}}
+            className="flex flex-col h-screen w-full pl-0 md:pl-11 lg:pl-20 xl:pl-52 pb-10 xl:pb-20 justify-end items-center xl:items-start">
             {dispalayedComponent ?
                 <><PostsList displayedPost={displayedPost}/>
                 <PostControls setDisplayedComponent={setDisplayedComponent} changePost={postControls}/></>
                 :<PostsForm setDisplayedComponent={setDisplayedComponent}/>
             }
             
-        </div>
-    
-    </>
+        </motion.div>
+    </AnimatePresence>
   )
 }
 

@@ -1,12 +1,19 @@
 .filepond--panel-root {
-    background-color: #fff;
+    background-color: #fff !important;
     border:rgb(105, 105, 105) 2px solid;
-    height:400px
+    height:470px !important;
 }
+/* .filepond--list{
+    display: flex;
+    flex-direction: column;
+}
+.filepond--item{
+    max-width:50%;
+} */
 [data-drag-state="drag"]{
-    width: calc(30% - 0.5em);
-    height: calc(30% - 0.5em);
+    width: calc(20% - 0.5em);
+    height: calc(20% - 0.5em);
 }
 .filepond--root:not(.filepond){    
-    height:350px;
+    height:470px !important;
 }
