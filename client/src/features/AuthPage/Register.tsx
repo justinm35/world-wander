@@ -24,30 +24,30 @@ const Register = () => {
 
   return (
     <div className="w-screen flex h-screen justify-center items-center">
-    <div className="w-full m-5 xl:w-5/6 h-5/6 bg-white rounded-3xl  shadow-md p-5 flex">
-        <img src={AuthBG} className="h-full rounded-3xl  object-cover mr-5 w-0 lg:w-1/2 invisible lg:visible"/>
+    <div className="w-full m-5 xl:w-5/6 h-fit bg-white rounded-3xl  shadow-md p-8 lg:p-5 flex">
+        <img src={AuthBG} className="h-full rounded-3xl  object-cover mr-5 w-0 lg:w-1/2 hidden lg:block"/>
       <div className="w-full lg:w-1/2 flex flex-col items-center ">
-        <p className="font-roboto font-normal text-lg text-right text-zinc-800 self-en self-end">Already a member? <Link to="/auth/login" className='hover:underline hover:text-purple-600'>Sign In</Link></p>
-        <h2 className="font-roboto font-normal text-6xl text-center mt-16 text-zinc-800">Welcome!</h2>
-        <p className="my-3 text-lg font-roboto text-zinc-800">Start sharing your travels with the world!</p>
-
+        <h2 className="font-roboto font-bold text-3xl lg:text-6xl text-center mt-4 lg:mt-16 text-zinc-800">Welcome!</h2>
+        <p className="my-3 text-lg font-roboto text-zinc-800 text-center">Start sharing your travels with the world!</p>
             { formPage ?
-            <div className='w-full flex flex-col items-center'>
-              <div className="flex w-4/6 space-x-5 mt-10">
-                <input id="firstName" type="firstName" placeholder="First Name" value={userData?.firstName} onChange={(e)=>{handleChange(e)}} className=" w-1/2 p-3  font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/>
-                <input id="lastName" type="lastName" placeholder="Last Name" value={userData?.lastName} onChange={(e)=>{handleChange(e)}} className=" w-1/2 p-3  font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/>
+            <div className='w-full lg:w-4/6 flex flex-col items-center mt-3 lg:mt-10 space-y-5'>
+              <div className="flex w-full space-x-5 mt-3">
+                <input id="firstName" type="firstName" placeholder="First Name" value={userData?.firstName} onChange={(e)=>{handleChange(e)}} className=" w-1/2 p-3  font-roboto font-semibold text-sm lg:text-lg text-zinc-800 outline-gray-500 rounded-lg bg-transparent outline border-none outline-2 focus:outline-offset-0 focus:outline-purple-600 focus:shadow-lg "/>
+                <input id="lastName" type="lastName" placeholder="Last Name" value={userData?.lastName} onChange={(e)=>{handleChange(e)}} className=" w-1/2 p-3  font-roboto font-semibold text-sm lg:text-lg text-zinc-800 outline-gray-500 rounded-lg bg-transparent outline border-none outline-2 focus:outline-offset-0 focus:outline-purple-600 focus:shadow-lg "/>
               </div>
-              <input id="email" type="email" placeholder="Email" value={userData.email} onChange={(e)=>{handleChange(e)}} className=" w-4/6 p-3  mt-5 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/>
-              <input id="password" type="password" placeholder="Password" value={userData.password} onChange={(e)=>{handleChange(e)}} className=" w-4/6 p-3  mt-5 font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg "/>
-              <button onClick={()=>setFormPage(false)} className="w-4/6 bg-zinc-800 text-white rounded-md h-14 text-xl mt-6 active:scale-95 transition flex items-center justify-center">Create Account<ArrowRightIcon className="w-8 h-8 ml-5 text-white "/></button>
-              <div className='flex w-4/6 mt-16'>
+              <input id="email" type="email" placeholder="Email" value={userData.email} onChange={(e)=>{handleChange(e)}} className=" w-full p-3 mt-3 lg:mt-10 font-roboto font-semibold text-sm lg:text-lg text-zinc-800 outline-gray-500 rounded-lg bg-transparent outline border-none outline-2 focus:outline-offset-0 focus:outline-purple-600 focus:shadow-lg "/>
+              <input id="password" type="password" placeholder="Password" value={userData.password} onChange={(e)=>{handleChange(e)}} className="w-full p-3 mt-3 lg:mt-10 font-roboto font-semibold text-sm lg:text-lg text-zinc-800 outline-gray-500 rounded-lg bg-transparent outline border-none outline-2 focus:outline-offset-0 focus:outline-purple-600 focus:shadow-lg "/>
+              <button onClick={()=>setFormPage(false)} className="w-full bg-zinc-800 text-white rounded-md h-10 lg:h-14 text-md lg:text-xl mt-6 active:scale-95 transition flex items-center justify-center">Create Account<ArrowRightIcon className="w-6 h-6 lg:w-8 lg:h-8 ml-3 text-white "/></button>
+              <p className="font-roboto font-normal text-sm lg:text-lg text-right text-zinc-800 self-en self-end mt-2">Already a member? <Link to="/auth/login" className='hover:underline hover:text-purple-600'>Sign In</Link></p>
+              <div className='flex w-full mt-3 lg:mt-5 items-center justify-center'>
                 <div className="w-full bg-zinc-300 h-0.5"/>
-                <p className="-mt-4 mx-4 min-w-fit text-lg font-roboto text-zinc-800">Or sign up with</p>
+                <p className=" mx-4 min-w-fit text-md lg:text-lg font-roboto text-zinc-500">Or continue with</p>
                 <div className="w-full bg-zinc-300 h-0.5"/>
               </div>
-                <button onClick={()=>{}} className="w-4/6 bg-zinc-800 text-white rounded-md h-14 text-xl mt-10 active:scale-95 transition">Google</button>
-            </div>:
-          <RegisterPg2 userData={userData} setUserData={setUserData} handleChange={handleChange} />}
+                <button onClick={()=>{}} className="w-full bg-zinc-800 text-white rounded-md h-10 lg:h-14 text-md lg:text-xl mt-5 lg:mt-10 active:scale-95 transition">Google</button>
+            </div>
+            :
+          <RegisterPg2 userData={userData} setUserData={setUserData} handleChange={handleChange} setFormPage={setFormPage} />}
       </div>
     </div>
   </div>

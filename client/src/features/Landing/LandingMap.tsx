@@ -15,28 +15,32 @@ const {data, isSuccess} = useFetchAllusersQuery()
         //### Initialize Map in DOM element
     const landingMapContainer: any = useRef(null);
     const map : any = useRef(null);
+    const windowSize = useRef([window.innerWidth, window.innerHeight]); // Get screen width and height for map zoom
+
+
     useEffect(() => {
+      let zoomInit;
+      let maxZoom;
+      if(windowSize.current[0] <= 1280 ){zoomInit = 0.7; maxZoom = 1}else{zoomInit = 2 ; maxZoom = 3}
         if (map.current) return; // initialize map only once
           map.current = new mapboxgl.Map({
             container: landingMapContainer.current ?? '',
             style: mapBoxStyle,
             center: [-74.5, 40],
-            zoom: 2,
+            zoom: zoomInit,
             attributionControl: false,
             trackResize: true,
           })
-          .setMaxZoom(2)
+          .setMaxZoom(maxZoom)
           .setMinZoom(1)
-    },[]);//end of use effect
-          // //clean up map on unmount
-          // return () => map.remove();
-          // }, []);//end of useEffect
+        return ()=> map.current?.remove
+    },[]);
       
 
     useEffect(()=>{
             isSuccess &&
             data.allUsers.forEach((user: any) => {
-              if(user?.baseLocation?.lng && user?.baseLocation?.lat){
+              if(user?.baseLocation.lng && user?.baseLocation.lat){
                 const mapMarker = document.createElement("div");
                 const renderMapmarker = createRoot(mapMarker)
                 renderMapmarker.render(<UserMarker username={user.username} profileImg={user.profileImg}/>)
@@ -47,11 +51,10 @@ const {data, isSuccess} = useFetchAllusersQuery()
               }
               })
           },[data,isSuccess])
-  
-  return (<>
-          <div ref={landingMapContainer} className="landingMapContainer w-screen h-screen">
+  return (
+        <>
+          <div ref={landingMapContainer} className="landingMapContainer w-screen h-screen mt-10 lg:mt-0">
           </div>
-            {/* <div className="bg-zinc-400 rounded-full w-52 h-40 scale-y-50 blur-xl mx-auto absolute bottom-0 left-1/2 transform -translate-x-1/2 ml-2"/> */}
         </>
           )
 }

@@ -4,6 +4,7 @@ import { displaySliceReducer } from "../features/Posts/displaySlice";
 // import AuthApiSlice from "../features/AuthPage/AuthApiSlice";
 // import authSlice from "../features/AuthPage/AuthSlice";
 
+
 export const store = configureStore({
     reducer: {
         [apiSlice.reducerPath] : apiSlice.reducer,

@@ -1,0 +1,21 @@
+[debug] [2023-04-13T18:30:54.453Z] ----------------------------------------------------------------------
+[debug] [2023-04-13T18:30:54.455Z] Command:       /usr/local/bin/firebase /Users/justinmartin/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy
+[debug] [2023-04-13T18:30:54.455Z] CLI Version:   11.25.2
+[debug] [2023-04-13T18:30:54.455Z] Platform:      darwin
+[debug] [2023-04-13T18:30:54.456Z] Node Version:  v16.16.0
+[debug] [2023-04-13T18:30:54.460Z] Time:          Thu Apr 13 2023 14:30:54 GMT-0400 (Eastern Daylight Time)
+[debug] [2023-04-13T18:30:54.460Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-13T18:30:54.518Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-13T18:30:54.519Z] > authorizing via signed-in user (justin.martin3501@gmail.com)
+[debug] [2023-04-13T18:30:54.519Z] [iam] checking project world-wander for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-04-13T18:30:54.521Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions [none]
+[debug] [2023-04-13T18:30:54.521Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions x-goog-quota-user=projects/world-wander
+[debug] [2023-04-13T18:30:54.521Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-04-13T18:30:54.890Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions 200
+[debug] [2023-04-13T18:30:54.890Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-04-13T18:30:54.890Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/world-wander/serviceAccounts/world-wander@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-04-13T18:30:54.890Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/world-wander/serviceAccounts/world-wander@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-04-13T18:30:55.228Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/world-wander/serviceAccounts/world-wander@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-04-13T18:30:55.229Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/world-wander/serviceAccounts/world-wander@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-04-13T18:30:55.229Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/world-wander [none]

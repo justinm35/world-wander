@@ -9,13 +9,14 @@ import { changeDisplayedPost } from "../Posts/displaySlice";
 import { useSelector } from "react-redux";
 import { useAuthUserQuery } from "../AuthPage/AuthApiSlice";
 import { useFetchUserPostsQuery } from "../Posts/postsSlice";
+import { IPosts } from "../Posts/PostsList";
 
 
 mapboxgl.accessToken = 'pk.eyJ1IjoianVzdGlubTM1MDEiLCJhIjoiY2xlemkwbW1jMXNnczN2bWtyeGl0Zzk1MCJ9.mFADKJCRybPTMrtLp5r9kA'
 const mapBoxStyle = "mapbox://styles/justinm3501/clfej09fp000e01pk1192aw6u?optimize=true"
 
 
-const Map = ({setDisplayedPost}: {setDisplayedPost : React.Dispatch<React.SetStateAction<number>>}) => {
+const Map = () => {
   const dispatch = useDispatch()
 
   //Fetching all the posts from the logged in user
@@ -39,10 +40,10 @@ const Map = ({setDisplayedPost}: {setDisplayedPost : React.Dispatch<React.SetSta
     return ()=> map.current?.remove
   },[]);
   //Reading the redux state and subscribing to any changes so state changes triggere re-render
-  const displayedPost = useSelector((state) => state?.displaySlice)
+  const displayedPost = useSelector((state : {displaySlice: {idCurrent: string}}) => state?.displaySlice)
   
   useEffect(() => { // Trigger the fly to once the global state is changed
-   const displayedIndex = posts?.allPosts.findIndex((post)=> post._id === displayedPost.idCurrent)
+   const displayedIndex = posts?.allPosts.findIndex((post : IPosts)=> post._id === displayedPost.idCurrent)
     if(displayedPost.idCurrent.length >= 10) {
       map.current?.flyTo({
         center: [ posts?.allPosts[displayedIndex]?.destCoordinates?.lng, posts?.allPosts[displayedIndex]?.destCoordinates?.lat],

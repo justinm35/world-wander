@@ -20,7 +20,7 @@ const Navbar = () => {
     }
 
   return (
-    <div className="z-10 w-screen max-w-full h-20 absolute pt-5">
+    <div className="z-50 w-screen max-w-full h-20 absolute pt-5">
         <nav>
         <div className="w-full px-8 flex flex-wrap items-center justify-between">
             {/* <NavLink to="/"><div className='flex'><h1 className="text-4xl font-roboto text-zinc-800">W</h1><GlobeAmericasIcon className="h-8 w-8 mt-1.5 text-zinc-800"/><h1 className="text-4xl font-roboto text-zinc-800">rld<span className="font-roboto">Wander</span></h1></div></NavLink> */}
@@ -45,7 +45,7 @@ const Navbar = () => {
                     <li>
                         <div className="flex items-center">
                         <p className='mr-4 text-xl font-roboto font-medium'>{data?.user?.firstName}</p>
-                        <button onMouseEnter={()=>setToggleNav((x)=>true)} className="flex items-center">
+                        <button onClick={()=>setToggleNav((x)=>!x)} onMouseEnter={()=>setToggleNav((x)=>true)} className="flex items-center">
                             {profileImage}
                         </button>
                         </div>

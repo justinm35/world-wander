@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "typeRoots": [
+      "node_modules/@types",
+      "@types"
+    ],     
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "forceConsistentCasingInFileNames": true, 
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+  },
+  "compileOnSave": true,
+  "include": [
+    "src"
+  ],
+  "ts-node": {
+    "files": true
+  }
+}
