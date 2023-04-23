@@ -22,11 +22,9 @@ const PostExcerpt = ({ post }:{ post: any}) => {
 
 
 // const displayedIndex = post?.allPosts?.findIndex((post)=> post._id === displayedPost.idCurrent)
-console.log(displayedPost)
   useEffect(() => {
     if(isInView && displayedPost !== post._id){
         dispatch(changeDisplayedPost(post._id))
-        console.log("PE setting the state")  
     }
   }, [isInView])
 

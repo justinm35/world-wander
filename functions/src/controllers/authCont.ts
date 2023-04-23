@@ -1,9 +1,10 @@
 import UsersModel, { UserModel } from '../models/userSchema'
 import { genPassword, validatePass, issueJWT } from '../utils/authUtils'
+// import passport from 'passport'
 
 //###CURRENTLY EVERY AUTHORIZATION REQUEST SENDS ALL USER INFO INCLUDING PHOTO 
 export const authorizeUser = async (req: any, res: any) => {
-    console.log('protected access')
+    console.log('protected access granted')
     //sending ALLL user info with auth request, should be changed ###TEMP#####
     res.status(200).json({success: true, user: req.user})
 }
@@ -34,7 +35,11 @@ export const loginUser = async (req: any, res: any, next: any) => {
             }).catch((err)=> {next(err)})
     }
 }
-
+//Google test aytg
+// export const googleLoginUser = async (req: any, res: any, next: any) => {
+//         passport.authenticate('google', {scope:['email', 'profile']})
+//         console.log(req.body)
+// }
 
 export const registerUser = async (req: any, res: any) => {
     try {
@@ -85,4 +90,10 @@ export const fetchAllUsers = async (req: any, res: any) => {
     const allUsers = await UserModel.find()
     
     res.status(200).json({allUsers})
+}
+
+export const userPubInfo = async (req: any, res: any) => {
+    console.log(req.params.username)
+    await UserModel.findOne({username: req.params.username}).select('username _id profileImg firstName lastName')
+    .then((result) => res.status(200).json({success: true, userinfo: result}))
 }

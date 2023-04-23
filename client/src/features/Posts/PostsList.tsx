@@ -5,17 +5,7 @@ import { ReactElement, useRef, useEffect } from 'react';
 import PostExcerpt from './PostExcerpt';
 import { GlobeAsiaAustraliaIcon} from '@heroicons/react/24/solid';
 import {motion, useSpring, useScroll } from 'framer-motion';
-export interface IPosts {
-  destination: string,
-  dateTraveled?: string,
-  tripLength?: string,
-  description: string,
-  destCoordinates?: object
-  creator: string,
-  createdAt: string,
-  _id?: string,
-  photos: string[]
-}
+
 let content: ReactElement;
 
 const PostsList = () => {

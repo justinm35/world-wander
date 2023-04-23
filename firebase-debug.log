@@ -1,0 +1,124 @@
+[debug] [2023-04-22T14:43:56.271Z] ----------------------------------------------------------------------
+[debug] [2023-04-22T14:43:56.272Z] Command:       /usr/local/bin/firebase /Users/justinmartin/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase serve
+[debug] [2023-04-22T14:43:56.272Z] CLI Version:   11.25.2
+[debug] [2023-04-22T14:43:56.272Z] Platform:      darwin
+[debug] [2023-04-22T14:43:56.272Z] Node Version:  v16.16.0
+[debug] [2023-04-22T14:43:56.273Z] Time:          Sat Apr 22 2023 10:43:56 GMT-0400 (Eastern Daylight Time)
+[debug] [2023-04-22T14:43:56.273Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"function"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"destination"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"destination"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"function"}
+[debug] [2023-04-22T14:43:56.329Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"function"}
+[debug] [2023-04-22T14:43:56.330Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.330Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.330Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.330Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.330Z] Object ".hosting.rewrites[0]" in "firebase.json" has unknown property: {"additionalProperty":"source"}
+[debug] [2023-04-22T14:43:56.330Z] Field ".hosting.rewrites[0]" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-04-22T14:43:56.330Z] Field ".hosting" in "firebase.json" is possibly invalid: should be array
+[debug] [2023-04-22T14:43:56.330Z] Field ".hosting" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-04-22T14:43:56.334Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-22T14:43:56.334Z] > authorizing via signed-in user (justin.martin3501@gmail.com)
+[debug] [2023-04-22T14:43:56.334Z] [iam] checking project world-wander for permissions ["firebase.projects.get"]
+[debug] [2023-04-22T14:43:56.337Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions [none]
+[debug] [2023-04-22T14:43:56.337Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions x-goog-quota-user=projects/world-wander
+[debug] [2023-04-22T14:43:56.338Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-04-22T14:43:56.563Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions 200
+[debug] [2023-04-22T14:43:56.563Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/world-wander:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-04-22T14:43:56.564Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/world-wander [none]
+[debug] [2023-04-22T14:43:56.854Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/world-wander 200
+[debug] [2023-04-22T14:43:56.855Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/world-wander {"projectId":"world-wander","projectNumber":"627287573215","displayName":"World-Wander","name":"projects/world-wander","resources":{"hostingSite":"world-wander"},"state":"ACTIVE","etag":"1_0288db93-28cd-466b-a0ef-bd65e8ab1368"}
+[info] 
+[info] === Serving from '/Users/justinmartin/Documents/coding-projects/ww-project'...
+[info] 
+[debug] [2023-04-22T14:43:56.861Z] defaultcredentials: writing to file /Users/justinmartin/.config/firebase/justin_martin3501_gmail.com_application_default_credentials.json
+[debug] [2023-04-22T14:43:56.861Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/world-wander/sites 
+[debug] [2023-04-22T14:43:56.863Z] Setting GAC to /Users/justinmartin/.config/firebase/justin_martin3501_gmail.com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/justinmartin/.config/firebase/justin_martin3501_gmail.com_application_default_credentials.json"}}
+[debug] [2023-04-22T14:43:56.864Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/world-wander/adminSdkConfig [none]
+[debug] [2023-04-22T14:43:57.200Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/world-wander/adminSdkConfig 200
+[debug] [2023-04-22T14:43:57.201Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/world-wander/adminSdkConfig {"projectId":"world-wander","storageBucket":"world-wander.appspot.com"}
+[debug] [2023-04-22T14:43:57.336Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/world-wander/sites 200
+[debug] [2023-04-22T14:43:57.337Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/world-wander/sites {"sites":[{"name":"projects/world-wander/sites/world-wander","defaultUrl":"https://world-wander.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-04-22T14:43:57.337Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/world-wander/webApps/-/config [none]
+[debug] [2023-04-22T14:43:57.692Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/world-wander/webApps/-/config 200
+[debug] [2023-04-22T14:43:57.692Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/world-wander/webApps/-/config {"projectId":"world-wander","appId":"1:627287573215:web:2f70c4002b258148bb5f6a","storageBucket":"world-wander.appspot.com","apiKey":"AIzaSyAFGcKo9mCB93-dQclMZDhZ_vJJRrHl26A","authDomain":"world-wander.firebaseapp.com","messagingSenderId":"627287573215","measurementId":"G-J9Y14J1Z5M"}
+[debug] [2023-04-22T14:43:57.713Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/world-wander [none]
+[debug] [2023-04-22T14:43:57.966Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/world-wander 200
+[debug] [2023-04-22T14:43:57.966Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/world-wander {"projectId":"world-wander","projectNumber":"627287573215","displayName":"World-Wander","name":"projects/world-wander","resources":{"hostingSite":"world-wander"},"state":"ACTIVE","etag":"1_0288db93-28cd-466b-a0ef-bd65e8ab1368"}
+[info] i  functions: Watching "/Users/justinmartin/Documents/coding-projects/ww-project/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/justinmartin/Documents/coding-projects/ww-project/functions\" for Cloud Functions..."}}
+[info] i  hosting[world-wander]: Serving hosting files from: client/dist {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mclient/dist\u001b[22m"}}
+[info] ✔  hosting[world-wander]: Local server: http://localhost:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5002\u001b[22m\u001b[24m"}}
+[debug] [2023-04-22T14:43:58.220Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2023-04-22T14:43:58.953Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "server": "nodemon src/index.ts",
+    "client": "npm start --prefix ../client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "concurrently": "^8.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "firebase-admin": "^11.5.0",
+    "firebase-functions": "^4.2.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22",
+    "passport": "^0.6.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/passport": "^1.0.12",
+    "@types/passport-google-oauth": "^1.0.42",
+    "@types/passport-google-oauth20": "^2.0.11",
+    "@types/passport-jwt": "^3.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "typescript": "^4.9.0"
+  },
+  "private": true
+}
+[debug] [2023-04-22T14:43:58.954Z] Building nodejs source
+[debug] [2023-04-22T14:43:58.954Z] Failed to find version of module node: reached end of search path /Users/justinmartin/Documents/coding-projects/ww-project/functions/node_modules
+[info] ✔  functions: Using node@16 from host. 
+[debug] [2023-04-22T14:43:58.956Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-04-22T14:43:58.966Z] Found firebase-functions binary at '/Users/justinmartin/Documents/coding-projects/ww-project/functions/node_modules/.bin/firebase-functions'
+[debug] [2023-04-22T14:43:59.330Z] Serving at port 8442
+
+[debug] [2023-04-22T14:43:59.709Z] Got response from /__/functions.yaml {"endpoints":{"server":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"server"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-04-22T14:43:59.714Z] shutdown requested via /__/quitquitquit
+
+[debug] [2023-04-22T14:44:00.204Z] ###### Databse Connected
+

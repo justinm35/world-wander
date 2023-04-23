@@ -9,6 +9,7 @@ import Account from './features/Account/Account'
 import Landing from './features/Landing/Landing'
 import Login from './features/AuthPage/Login'
 import Register from './features/AuthPage/Register'
+import PublicUser from './features/PublicUser/PublicUser'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <Navbar/>
     <Routes>
       <Route index element={<Landing/>}/>
+      <Route path='/user/:username' element={<PublicUser/>}/>
       {/* <Route path="/auth" element={<Auth/>}/> */}
       <Route path="/auth">
         <Route path="login" element={<Login/>}/>

@@ -1,14 +1,16 @@
 import React, { useMemo, useState } from 'react'
 import { GlobeAmericasIcon, Bars3Icon, UserCircleIcon, ChevronDownIcon } from '@heroicons/react/24/solid'
+import { motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 import { useAuthUserQuery } from '../AuthPage/AuthApiSlice'
 import { useNavigate } from 'react-router-dom'
 import ww_logo from '../../assets/WW-LOGO-GRAY.png'
-import {ArrowUpTrayIcon} from '@heroicons/react/24/solid'
+import {ArrowUpTrayIcon, XMarkIcon} from '@heroicons/react/24/solid'
 
 
 const Navbar = () => {
     const [toggleNav, setToggleNav] = useState(false)
+    const [togleShareToast, setToggleShareToast] = useState(false)
     const {data, isSuccess, isLoading}= useAuthUserQuery()
     const navigate = useNavigate();
         
@@ -20,6 +22,7 @@ const Navbar = () => {
     }
 
   return (
+    <>
     <div className="z-50 w-screen max-w-full h-20 absolute pt-5">
         <nav>
         <div className="w-full px-8 flex flex-wrap items-center justify-between">
@@ -40,7 +43,9 @@ const Navbar = () => {
                     {localStorage.getItem('Bearer') &&
                     <>
                     <li>
-                    <ArrowUpTrayIcon className="w-8 h-8 text-zinc-500 mr-5"/>
+                        <div onClick={()=>setToggleShareToast(x => true)} className="w-10 h-10 rounded-full flex items-center justify-center mr-4 cursor-pointer">
+                            <ArrowUpTrayIcon className="w-6 h-6 text-zinc-500 font-bold transition hover:scale-110 hover:text-zinc-800 active:-translate-y-1"/>
+                        </div>
                     </li>
                     <li>
                         <div className="flex items-center">
@@ -71,7 +76,20 @@ const Navbar = () => {
         </div>
         </nav>
     </div>
-
+    { togleShareToast ? 
+            <motion.div 
+                initial={{opacity:0, y:-200, x:'-50%'}}
+                animate={{opacity:1, y:-100, x:'-50%'}}
+                className=" z-40 bg-white rounded-lg shadow-lg pb-8 px-3 pt-3 absolute top-1/2 left-1/2 transform">
+                <XMarkIcon onClick={()=>setToggleShareToast(false)} className="text-zinc-500 h-8 w-8 transition hover:text-zinc-800 active:scale-75"/>
+                    <h2 className="mt-6 mx-4 mb-3 font-inter text-2xl font-medium text-zinc-800">Share your Wanders using this link.</h2>
+                    <div className="py-0.5 px-1 mx-4 border-gray-200 border-2 rounded-md">
+                        <h1 className="text-xl font-inter font-normal text-zinc-500 p-4">http://worldwander.justinm.dev/user/{data?.user?.username}</h1>
+                    </div>
+            </motion.div>
+        : null
+        }
+    </>
 
   )
 }

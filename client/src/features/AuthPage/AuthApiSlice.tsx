@@ -34,9 +34,15 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 url:"/auth/userlist",
                 method: "GET"
             })
+        }),
+        fetchPubUserInfo: builder.query({
+            query: (username) => ({
+                url: `/auth/userinfo/${username}`,
+                method: "GET",
+            })
         })
     })
 })
 
 
-export const { useAuthUserQuery, useRegisterUserMutation, useLoginUserMutation, useFetchAllusersQuery, useUpdateUserMutation } = authApiSlice;
+export const { useAuthUserQuery, useRegisterUserMutation, useLoginUserMutation, useFetchAllusersQuery, useUpdateUserMutation, useFetchPubUserInfoQuery } = authApiSlice;
