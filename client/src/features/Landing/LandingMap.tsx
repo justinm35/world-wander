@@ -53,7 +53,7 @@ const {data, isSuccess} = useFetchAllusersQuery()
           },[data,isSuccess])
   return (
         <>
-          <div ref={landingMapContainer} className="landingMapContainer w-screen h-screen mt-10 lg:mt-0">
+          <div ref={landingMapContainer} className="landingMapContainer w-screen h-screen lg:mt-0">
           </div>
         </>
           )

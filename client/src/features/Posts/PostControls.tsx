@@ -8,7 +8,7 @@ const PostControls = ({ setDisplayedComponent, setPostsCollapsed, postCollapsed}
    {setDisplayedComponent: React.Dispatch<React.SetStateAction<boolean>>, setPostsCollapsed : (e: any) => void, postCollapsed: boolean}) => {
   
   return (
-      <div className='flex md:w-5/6 lg:w-2/3 xl:w-1/3 w-11/12 px-4 bg-white pb-2 lg:pb-3 pt-5 h-15 lg:h-20 rounded-t-lg lg:rounded-2xl shadow-lg content-center z-30 justify-between '>
+      <div className='flex md:w-4/6 lg:w-2/3 xl:w-1/3 w-11/12 px-4 bg-white pb-2 lg:pb-3 pt-5 h-15 lg:h-20 rounded-t-lg shadow-lg content-center z-30 justify-between '>
         <div className="w-1/3 flex items-center justify-start">
           {/* <button className="">Collapse</button> */}
         </div>

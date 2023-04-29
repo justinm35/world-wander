@@ -27,7 +27,7 @@ export const SettingsNavigation = () => {
             <h1 className="self-start font-roboto text-4xl font-medium text-zinc-800 pb-1.5" >Account</h1>
             <p className="font-roboto text-xl text-zinc-700">Set your account settings below</p>
               <div className="p-2 rounded-lg bg-white mt-5 shadow-md">
-                <ul className="flex w-full font-roboto text-xl text-zinc-800 items-center space-x-2">
+                <ul className="flex w-full font-roboto text-md lg:text-xl text-zinc-800 items-center space-x-2">
                   <li className="w-1/3"><NavLink to="/account" end>
                     {({isActive})=> (
                       <div className={isActive ? "font-semibold w-full rounded-md p-3  bg-zinc-100 text-center text-purple-800" :"font-semibold w-full rounded-md p-3 text-center transition hover:scale-110"}>Profile</div>

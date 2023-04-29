@@ -9,7 +9,8 @@ import FilePondPluginImageTransform from 'filepond-plugin-image-transform'
 import FilePondPluginImageEdit from 'filepond-plugin-image-edit'
 import { useRegisterUserMutation, useAuthUserQuery } from './AuthApiSlice';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeftIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid';
+import { useState } from 'react';
 
 interface IRegisterPg2 {
     handleChange: (e: any) => void;
@@ -24,9 +25,31 @@ const RegisterPg2 = ({handleChange, userData, setUserData, setFormPage}: IRegist
         FilePondPluginImageResize, FilePondPluginImageTransform,FilePondPluginImageEdit, FilePondPluginFileEncode);
         const [ registerUser, {data ,isLoading, isError}] = useRegisterUserMutation()
         const { refetch } = useAuthUserQuery()
-        
+
+    const [errorMessage, setErrorMessage] = useState<string>('')
+    const validateForm =  (newUser: any): boolean => {
+          if(!newUser.email.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+              setErrorMessage('Invalid Email');
+              return false;
+          }else if(!newUser.username){
+            setErrorMessage('Invalid Username');
+            return false;
+          }else if(!newUser.firstName){
+            setErrorMessage('No First Name');
+            return false;
+          }else if(!newUser.lastName){
+            setErrorMessage('No Last Name');
+            return false;
+          }else if(!newUser.password){
+            setErrorMessage('Invalid Password');
+            return false;
+          }else{
+            return true;
+          }
+        }
     const handleSubmit = async(e : React.FormEvent<HTMLButtonElement>) => {
             e.preventDefault()
+          if(!validateForm(userData)) return;
             try {
               await registerUser({...userData})
                 .then((response : any)=>{
@@ -67,6 +90,7 @@ const RegisterPg2 = ({handleChange, userData, setUserData, setFormPage}: IRegist
         <p className="text-roboto text-zinc-500 text-xs lg:text-lg pt-2 w-11/12">* Your username will be used to create a unique url for your wanders. (e.g. worldwander.com/johnsmith12)</p>
         <button onClick={(e)=>handleSubmit(e)} className="w-full bg-zinc-800 text-white rounded-md h-10 lg:h-14 text-xl mt-6 active:scale-95 transition flex items-center justify-center">Create Account</button>
         <a onClick={()=>setFormPage(true)} className="text-md lg:text-xl font-roboto text-zinc-800 self-start flex mt-3 items-center hover:underline hover:cursor-pointer"><ArrowLeftIcon className="w-4 lg:w-6 mr-1"/>Back</a>
+        {(errorMessage !== '') && <div className='text-zinc-800 font-roboto font-medium text-md items-center flex mt-3'><ExclamationCircleIcon className='w-5 h-5 text-red-500 mr-1'/> {errorMessage}</div>}
     </div>
   )
 }

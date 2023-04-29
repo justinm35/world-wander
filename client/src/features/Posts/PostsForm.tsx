@@ -10,6 +10,7 @@ import "filepond/dist/filepond.min.css";
 import './postForm.css'
 import { useDeletePhotoMutation } from './postsSlice';
 import { useAuthUserQuery } from '../AuthPage/AuthApiSlice';
+import TextareaAutosize from 'react-textarea-autosize';
 
 const PostsForm = ({setDisplayedComponent}:{setDisplayedComponent :  React.Dispatch<React.SetStateAction<boolean>>}) => {
   
@@ -85,7 +86,7 @@ const {data, isSuccess} = useAuthUserQuery()
   }
 const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, suggestions, loading } : {getInputProps: any;getSuggestionItemProps: any; suggestions: ReadonlyArray<any>, loading: boolean; }) => (
     <div className="autocomplete-root">
-       <input className="block p-5 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" {...getInputProps()} placeholder='e.g. Rome, Italy'/>
+       <input className="block p-3 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" {...getInputProps()} placeholder='e.g. Rome, Italy'/>
        <div className="absolute bg-white rounded-xl  shadow-lg">
                {loading && <div className='text-xl font-roboto text-zinc-800'>Loading...</div>}
                {suggestions.map(suggestion => {
@@ -101,10 +102,10 @@ const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, s
 
   
   return (
-  <div className="flex flex-col bg-white shadow-xl rounded-3xl p-6 md:w-11/12 lg:w-full xl:w-1/2 w-10/12 z-10  -ml-20">
+  <div className="flex flex-col bg-white shadow-xl rounded-3xl p-6 w-11/12 md:w-11/12 lg:w-11/12 xl:w-1/2 z-10">
     <div className="flex justify-between w-full h-full"><button onClick={()=>setDisplayedComponent(x=>!x)}><XMarkIcon className="h-10 w-10 text-zinc-800 mb-5" /></button></div>
-      <form onSubmit={onSubmit} className="flex flex-row space-x-5">
-      <div className="w-1/2">
+      <form onSubmit={onSubmit} className="flex flex-row flex-wrap gap-5 w-full">
+      <div className=" flex-grow w-1/3">
         <label className="font-roboto text-xl font-medium flex flex-col">Photos
           <FilePond files={files} onupdatefiles={(e: any)=>setFiles(e)} instantUpload={true} allowReorder={true} allowMultiple={true}
               allowFileEncode={true} maxFiles={4}
@@ -129,22 +130,24 @@ const autoCompleteFill = useCallback(({ getInputProps, getSuggestionItemProps, s
             />
         </label>
       </div>
-      <div className="w-1/2 space-y-3">
+      <div className=" flex-grow  space-y-3">
         <label className="font-roboto text-xl font-medium flex flex-col">Destination
           <PlacesAutocomplete value={destinationData} onChange={handleDestChange}>
             {autoCompleteFill}
           </PlacesAutocomplete>
         </label>
-        <div className="flex space-x-3">
-        <label className="font-roboto text-xl font-medium flex flex-col w-full">Date Travled
-          <input id="dateTraveled" onChange={handleChange} value={postData.dateTraveled} type="date"  className="block p-5 w-full  font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
-        </label>
-        <label className="font-roboto text-xl font-medium flex flex-col w-full">Date Travled
-          <input id="tripLength" onChange={handleChange} value={postData.tripLength} type="number" className="block p-5 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
-        </label>
+        <div className="flex flex-wrap gap-3">
+          <label className="font-roboto text-xl font-medium flex flex-col basis-1/3 flex-grow">Date Travled
+            <input id="dateTraveled" onChange={handleChange} value={postData.dateTraveled} type="date"  className="block p-3 w-full  font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
+          </label>
+          <label className="font-roboto text-xl font-medium flex flex-col basis-1/3 flex-grow">Trip Length
+            <input id="tripLength" onChange={handleChange} value={postData.tripLength} type="number" className="block p-3 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg"/>
+          </label>
         </div>
+
         <label className="font-roboto text-xl font-medium flex flex-col">Date Travled
-          <textarea placeholder="Beautiful architecture and amazing food!..." id="description" onChange={(e: any)=>handleChange(e)} value={postData.description} className="block p-2 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" rows={5} spellCheck="false"></textarea>
+          <TextareaAutosize placeholder="Beautiful architecture and amazing food!..." id="description" onChange={(e: any)=>handleChange(e)} value={postData.description} 
+          className="block p-2 w-full font-roboto font-semibold text-lg text-zinc-800 border-2 border-gray-500 rounded-lg bg-transparent sm:text-md focus:ring--purple-600 focus:border-purple-600 focus:shadow-lg" minRows={2} spellCheck="false"/>
         </label>
         <p className="text-red-700 font-sans font-medium text-2xl text-center pt-2"> {errorHandling}</p>
           <button className="w-full bg-zinc-800 text-white rounded-md h-14 text-xl mt-10 active:scale-95 transition">Post</button>

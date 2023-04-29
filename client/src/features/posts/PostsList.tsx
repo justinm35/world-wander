@@ -45,10 +45,10 @@ const PostsList = () => {
         animate={{opacity: 1, y: 0}}
         exit={{opacity: 0, y: 50}}
       
-      ref={scrollRef} key="modal" className="space-y-8 z-20 rounded-2xl shadow-lg h-[660px] lg:h-[760px] md:w-4/6 lg:w-2/3 xl:w-1/3 w-11/12 overflow-scroll snap-mandatory scrollbar-hide snap-y" >
+      ref={scrollRef} key="modal" className="space-y-8 z-20 rounded-2xl shadow-lg  w-11/12 md:w-4/6 lg:w-2/3 xl:w-1/3 overflow-scroll mb-5  snap-mandatory scrollbar-hide snap-y" >
         {content}
       </motion.div>
-      <div className="md:w-4/6 lg:w-2/3 xl:w-1/3 w-11/12 -mb-3 overflow-hidden z-30 mt-5 rounded-[60px]">
+      <div className="w-11/12 sm:w-11/12 md:w-4/6 lg:w-2/3 xl:w-1/3 overflow-hidden z-40 absolute bottom-0">
         <motion.div className="w-full bg-zinc-300 origin-left h-2 " style={{ scaleX }} />
       </div>
     </> 

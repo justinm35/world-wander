@@ -5,6 +5,7 @@ import AuthBG from  '../../assets/AuthBG.png'
 import ww_logo_white from '../../assets/WW-LOGO-WHITE.png'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { ThreeDotsBounce } from 'react-svg-spinners'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 
 
@@ -48,22 +49,23 @@ const Login = () => {
     }
   return (
     <div className="w-screen flex h-screen justify-center items-center">
-      <div className="w-full h-fit m-5 xl:w-5/6 bg-white rounded-3xl shadow-md p-8 lg:p-5 flex">
+      <div className=" h-fit m-5 w-11/12 sm:w-2/3 md:w-3/6 lg:w-5/6 xl:w-5/6 bg-white rounded-3xl shadow-md p-8 lg:p-5 flex">
 
-          <img src={AuthBG} className=" max-w-1/2 max-h-full lg:w-1/2 rounded-3xl  object-cover mr-5 w-0  hidden lg:block"/>
-          {/* <img src={ww_logo_white} className=" absolute w-64 aspect-square"/> */}
-          
-        <div className="w-full lg:w-1/2 flex flex-col items-center pb-5">
-          <h2 className="font-roboto font-bold text-3xl lg:text-6xl text-center mt-4 lg:mt-16 text-zinc-800">Hello Again!</h2>
-          <p className="my-3 text-lg font-roboto text-zinc-800 text-center">Continue sharing your travels with the world!</p>
+        <LazyLoadImage src={AuthBG} alt="mountain image" className=" max-w-1/2 max-h-full lg:w-1/2 rounded-3xl  object-cover mr-5 w-0  hidden lg:block"/>
+        {/* <img src={ww_logo_white} className=" absolute w-64 aspect-square"/> */}  
+        <div className="w-full lg:w-1/2 flex flex-col items-center justify-center pb-5">
+          <h2 className="font-roboto font-bold text-3xl lg:text-4xl text-center  text-zinc-800">Hello Again!</h2>
+          <p className="my-3 text-lg font-roboto text-zinc-500 text-center font-medium">Continue sharing your travels with the world!</p>
             <form className='w-full flex flex-col items-center'>
             <div className="flex flex-col w-full lg:w-4/6">
-              <p><span className="font-bold">Work In Progress:</span> To test website login with username: johnsmith12 and pass:123 or create account as needed</p>
+              <div className="border-2 border-red-600 rounded-md p-4">
+              <p className='text-sm'><span className="font-bold">Work In Progress:</span> To test website login with username: johnsmith12 and pass:123 or create account as needed</p>
+              </div>
               <input id="username" type="username" placeholder="Username" value={userData.username} onChange={(e)=>{handleChange(e)}} className=" w-full p-3 mt-3 lg:mt-10 font-roboto font-semibold text-sm lg:text-lg text-zinc-800 outline-gray-500 rounded-lg bg-transparent outline border-none outline-2 outline-offset-0 focus:outline-purple-600 focus:shadow-lg "/>
               <input id="password" type="password" placeholder="Password" value={userData.password} onChange={(e)=>{handleChange(e)}} className=" w-full p-3 mt-5 font-roboto font-semibold text-sm lg:text-lg text-zinc-800 outline-gray-500 rounded-lg bg-transparent outline border-none outline-2 focus:outline-offset-0 focus:outline-purple-600 focus:shadow-lg "/>
               <a className="self-end font-roboto font-normal text-sm lg:text-lg pt-2 text-zinc-800 hover:underline hover:text-purple-600">Recover Password</a>
               <button onClick={(e)=>handleSubmit(e)} disabled={isLoading ? true : false} className="w-full bg-zinc-800 text-white rounded-md h-10 lg:h-14 text-md lg:text-xl mt-4 lg:mt-6 active:scale-95 transition disabled:bg-zinc-700 flex items-center justify-center gap-3">Sign In {isLoading && <ThreeDotsBounce color='#ffffff'/>}</button>
-              <p className="font-roboto font-normal text-sm lg:text-lg text-right text-zinc-800 mt-2">Not a member? <Link to="/auth/register" className='hover:underline hover:text-purple-600'>Sign Up</Link></p>
+              <p className="font-roboto font-normal text-sm lg:text-lg text-right text-zinc-800 mt-3">Not a member? <Link to="/auth/register" className='hover:underline hover:text-purple-600'>Sign Up</Link></p>
               {(errorMessage !== '') && <div className='text-zinc-800 font-roboto font-medium text-md items-center flex mt-3'><ExclamationCircleIcon className='w-5 h-5 text-red-500 mr-1'/> {errorMessage}</div>}
               </div>
               <div className='flex w-full lg:w-4/6 mt-3 lg:mt-5 items-center justify-center'>
@@ -72,7 +74,7 @@ const Login = () => {
                 <div className="w-full bg-zinc-300 h-0.5"/>
               </div>
             </form>
-            <button onClick={(e)=>handleSubmit(e)} className="w-full lg:w-4/6 bg-zinc-800 text-white rounded-md h-10 lg:h-14 text-md lg:text-xl mt-5 lg:mt-10 active:scale-95 transition flex justify-center items-center"><svg
+            <button onClick={()=>{}} disabled={true} className=" disabled:bg-zinc-300 w-full lg:w-4/6 bg-zinc-800 text-white rounded-md h-10 lg:h-14 text-md lg:text-xl mt-5 lg:mt-10 active:scale-95 transition flex justify-center items-center"><svg
                 className='mr-2 h-5 w-5'
                 aria-hidden='true'
                 focusable='false'

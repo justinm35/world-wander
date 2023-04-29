@@ -5,4 +5,11 @@ body{
   width:100vw;
   background-color: #F3F5F7;
   overflow-x: hidden;
+  min-height: 100vh;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
 }

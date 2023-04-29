@@ -18,23 +18,23 @@ const Navbar = () => {
     if(isLoading) {
         profileImage = <div className="animate-pulse w-10 h-10 rounded-full bg-zinc-300"/>
     }else{
-        profileImage =  <img src={'data:image/png;base64,'+ data?.user?.profileImg} className="w-11 h-11 text-zinc-800 rounded-full" /> 
+        profileImage =  <img src={'data:image/png;base64,'+ data?.user?.profileImg} className="w-8 h-8 lg:w-11 lg:h-11 text-zinc-800 rounded-full" /> 
     }
 
   return (
     <>
-    <div className="z-50 w-screen max-w-full h-20 absolute pt-5">
+    <div className="z-50 w-screen max-w-full h-20 absolute pt-3 lg:pt-5">
         <nav>
-        <div className="w-full px-8 flex flex-wrap items-center justify-between">
+        <div className="w-full px-4 lg:px-8 flex flex-wrap items-center justify-between">
             {/* <NavLink to="/"><div className='flex'><h1 className="text-4xl font-roboto text-zinc-800">W</h1><GlobeAmericasIcon className="h-8 w-8 mt-1.5 text-zinc-800"/><h1 className="text-4xl font-roboto text-zinc-800">rld<span className="font-roboto">Wander</span></h1></div></NavLink> */}
-            <NavLink to="/"><img src={ww_logo} className="transition active:scale-95 w-14 h-14"></img></NavLink>
+            <NavLink to="/"><img src={ww_logo} className="transition active:scale-95 h-10 w-10 lg:w-14 lg:h-14"></img></NavLink>
 
             <div className=" w-auto">
                 <ul className=" flex md:text-sm md:font-medium items-center">
                     {!localStorage.getItem('Bearer') && 
                     <>
-                    <li className="transition hover:scale-105"><NavLink to="auth/login" className="text-zinc-800 font-roboto font-normal text-xl md:hover:text-purple-700 mr-5">Log In</NavLink></li>
-                    <li><NavLink to="auth/register" className="px-4 py-2.5 text-zinc-800 font-roboto font-normal border-2 border-zinc-300 rounded-lg text-xl hover:text-purple-700 hover:shadow-lg pointer-events-auto transition active:translate-x-4 ">Sign Up</NavLink></li>
+                    <li className="transition hover:scale-105"><NavLink to="auth/login" className="text-zinc-800 font-roboto font-normal text-md lg:text-xl md:hover:text-purple-700 mr-5">Log In</NavLink></li>
+                    <li><NavLink to="auth/register" className="px-4 py-2.5 text-zinc-800 font-roboto font-normal border-2 border-zinc-300 rounded-lg text-md lg:text-xl hover:text-purple-700 hover:shadow-lg pointer-events-auto transition active:translate-x-4 ">Sign Up</NavLink></li>
                     </>
                     }
                     {/* {localStorage.getItem('Bearer') &&
@@ -43,13 +43,13 @@ const Navbar = () => {
                     {localStorage.getItem('Bearer') &&
                     <>
                     <li>
-                        <div onClick={()=>setToggleShareToast(x => true)} className="w-10 h-10 rounded-full flex items-center justify-center mr-4 cursor-pointer">
-                            <ArrowUpTrayIcon className="w-6 h-6 text-zinc-500 font-bold transition hover:scale-110 hover:text-zinc-800 active:-translate-y-1"/>
+                        <div onClick={()=>setToggleShareToast(x => true)} className="w-10 h-10 rounded-full flex items-center justify-center mr-1 lg:mr-4 cursor-pointer">
+                            <ArrowUpTrayIcon className="h-5 w-5 lg:w-6 lg:h-6 text-zinc-500 font-bold transition hover:scale-110 hover:text-zinc-800 active:-translate-y-1"/>
                         </div>
                     </li>
                     <li>
                         <div className="flex items-center">
-                        <p className='mr-4 text-xl font-roboto font-medium'>{data?.user?.firstName}</p>
+                        <p className='mr-2 lg:mr-4 text- lg:text-xl font-roboto font-medium'>{data?.user?.firstName}</p>
                         <button onClick={()=>setToggleNav((x)=>!x)} onMouseEnter={()=>setToggleNav((x)=>true)} className="flex items-center">
                             {profileImage}
                         </button>

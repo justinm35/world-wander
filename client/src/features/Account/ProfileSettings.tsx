@@ -62,7 +62,7 @@ const ProfileSettings = () => {
 
     if(infoSuccess) {
         return (   
-            <div className="w-2/3 lg:w-1/3 xl:w-1/3 2xl:w-1/4 ">
+            <div className="w-2/3 lg:w-1/3 xl:w-1/3 2xl:w-1/4 pb-10">
             <form className="flex flex-col w-full space-y-4" onSubmit={handleSubmitChanges}>
               <div className="flex">
               <img src={'data:image/png;base64,' + updatedData.profileImg} className="w-28 rounded-full mb-5"/>

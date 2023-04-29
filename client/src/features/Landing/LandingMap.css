@@ -10,13 +10,14 @@
     }
   } */
   .landingMapContainer {
-    height: 100vh;
+    height: 80vh;
     width:100vw;
     right:-20vw;
     position: absolute;
   }
   @media only screen and (max-width: 1280px) {
     .landingMapContainer {
+      height: 80vh;
       width:100vw;
       right:0;
     }

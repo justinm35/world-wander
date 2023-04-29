@@ -29,7 +29,14 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         url: `/photos/removePhoto/${id}`,
         method:"DELETE"
       })
+    }),
+    likePost : builder.mutation({
+      query: ({postId, userId}) => ({
+        url: `/posts/like/${postId}/${userId}`,
+        method:"PATCH"
+      }),
+      invalidatesTags: ["Posts"]
     })
   }),
 });
-export const { useAddNewPostMutation, useFetchAllPostsQuery, useDeletePostMutation, useDeletePhotoMutation, useFetchUserPostsQuery } = postsApiSlice;
+export const { useAddNewPostMutation, useFetchAllPostsQuery, useDeletePostMutation, useDeletePhotoMutation, useFetchUserPostsQuery, useLikePostMutation } = postsApiSlice;

@@ -16,3 +16,8 @@
 .filepond--root:not(.filepond){    
     height:470px !important;
 }
+@media only screen and (max-width: 760px) {
+    .filepond--root:not(.filepond){    
+        height:270px !important;
+    }
+}

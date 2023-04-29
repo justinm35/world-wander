@@ -9,7 +9,8 @@ interface IPosts {
     creator: string,
     createdAt: string,
     _id?: string,
-    photos: string[]
+    photos: string[],
+    likes: string[],
 }
 
 const PostSchema = new Schema<IPosts>({
@@ -21,6 +22,7 @@ const PostSchema = new Schema<IPosts>({
     creator: {type: String, required : false},
     createdAt: {type: String, required : false},
     photos: {type: [String], required: false},
+    likes: {type: [String], required: false},
 });
 
 const PostModel = model<IPosts>('Posts', PostSchema);
